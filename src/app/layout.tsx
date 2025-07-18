@@ -48,7 +48,7 @@ export default function RootLayout({
           <ProjectProvider>
             <div className="relative flex min-h-screen flex-col">
               <header className="bg-background sticky top-0 z-40 w-full border-b border-gray-200 dark:border-gray-800">
-                <div className="container flex h-16 items-center space-x-4 px-4 sm:justify-between sm:space-x-0">
+                <div className="flex h-16 items-center space-x-4 px-6 sm:justify-between sm:space-x-0">
                   <div className="flex items-center gap-6 text-base font-medium">
                     <h1 className="text-xl font-bold">
                       Vibe Coding Tools Index
@@ -57,7 +57,7 @@ export default function RootLayout({
                   <div className="flex flex-1 items-center justify-end space-x-4"></div>
                 </div>
               </header>
-              <main className="container flex-1 py-6">{children}</main>
+              <main className="flex-1 px-6 py-6">{children}</main>
             </div>
           </ProjectProvider>
         </ThemeProvider>

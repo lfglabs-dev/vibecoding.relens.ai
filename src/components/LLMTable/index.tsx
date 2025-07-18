@@ -285,7 +285,7 @@ export function LLMTable() {
                   {project.name}
                 </td>
                 <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
-                  {project.category}
+                  {capitalizeFirstLetter(project.category)}
                 </td>
                 <td className="whitespace-nowrap px-4 py-4 text-sm">
                   <ModelRanking

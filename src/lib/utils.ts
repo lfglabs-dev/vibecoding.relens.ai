@@ -163,6 +163,7 @@ const MODEL_PATTERNS = {
   ],
   gemini: [
     { pattern: /^google\/gemini-2\.5-flash-preview/, name: "Gemini 2.5 Flash" },
+    { pattern: /^google\/gemini-2\.5-flash/, name: "Gemini 2.5 Flash" },
     { pattern: /^gemini-pro/, name: "Gemini Pro" },
     { pattern: /^gemini-ultra/, name: "Gemini Ultra" },
   ],
