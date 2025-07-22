@@ -7,7 +7,6 @@ const MODEL_IMAGES = {
   chatgpt: "/llms/gpt_black.webp",
   claude: "/llms/claude.webp",
   gemini: "/llms/gemini.webp",
-  perplexity: "/llms/perplexity.webp",
   other: "/llms/cursor.webp",
 } as const
 

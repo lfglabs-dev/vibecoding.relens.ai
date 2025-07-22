@@ -21,7 +21,6 @@ export const getModelProvider = (modelName: string): ModelProvider => {
   if (name.includes("gpt")) return "chatgpt"
   if (name.includes("claude")) return "claude"
   if (name.includes("gemini")) return "gemini"
-  if (name.includes("perplexity")) return "perplexity"
   return "other"
 }
 
@@ -37,8 +36,6 @@ const isModelInFamily = (
       return name.includes("claude")
     case "gemini":
       return name.includes("gemini")
-    case "perplexity":
-      return name.includes("sonar") || name.includes("perplexity")
     default:
       return false
   }
