@@ -13,7 +13,7 @@ const badgeVariants = tv({
     variant: {
       default: [
         "bg-blue-50 text-blue-900 ring-blue-500/30",
-        "dark:bg-blue-400/10 dark:text-blue-400 dark:ring-blue-400/30",
+        "dark:bg-purple-700/40 dark:text-purple-200 dark:ring-purple-400/40",
       ],
       neutral: [
         "bg-gray-50 text-gray-900 ring-gray-500/30",
@@ -30,6 +30,18 @@ const badgeVariants = tv({
       warning: [
         "bg-yellow-50 text-yellow-900 ring-yellow-600/30",
         "dark:bg-yellow-400/10 dark:text-yellow-500 dark:ring-yellow-400/20",
+      ],
+      purple: [
+        "bg-purple-200 text-purple-900 ring-purple-400/40",
+        "dark:bg-purple-700/40 dark:text-purple-200 dark:ring-purple-400/40",
+      ],
+      "purple-light": [
+        "bg-purple-100 text-purple-800 ring-purple-300/40",
+        "dark:bg-purple-800/40 dark:text-purple-200 dark:ring-purple-300/40",
+      ],
+      "purple-dark": [
+        "bg-purple-900 text-purple-100 ring-purple-900/60",
+        "dark:bg-purple-950 dark:text-purple-200 dark:ring-purple-900/80",
       ],
     },
   },

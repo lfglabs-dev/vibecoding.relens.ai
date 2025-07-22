@@ -17,16 +17,16 @@ const geistMono = localFont({
 })
 
 export const metadata: Metadata = {
-  title: "Vibe Coding Tools Index",
-  description: "Compare and analyze LLM models performance metrics",
-  keywords: ["LLM", "AI Models", "Performance Metrics", "Dashboard"],
+  title: "The Vibe coding leaderboard",
+  description: "The Vibe coding leaderboard ranks dev-tools based on how well AI models generate accurate code and applications with them.",
+  keywords: ["Vibe coding", "AI Models", "Performance Metrics", "The Vibe coding Leaderboard"],
   authors: [
     {
-      name: "Your Name",
-      url: "https://github.com/yourusername",
+      name: "ReLens AI",  
+      url: "https://relens.ai",
     },
   ],
-  creator: "Your Name",
+  creator: "ReLens AI",
 }
 
 export default function RootLayout({
@@ -35,9 +35,9 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full" suppressHydrationWarning>
+    <html lang="en" className="h-full bg-gray-900" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} bg-background h-full font-sans antialiased dark:bg-gray-950`}
+        className={`${geistSans.variable} ${geistMono.variable} h-full font-sans antialiased text-white`}
       >
         <ThemeProvider
           attribute="class"
@@ -46,20 +46,16 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ProjectProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <header className="sticky top-0 z-40 w-full border-b border-gray-200 bg-white/80 backdrop-blur-sm dark:border-gray-800 dark:bg-gray-950/80">
+            <div className="relative flex min-h-screen flex-col bg-gradient-to-b from-gray-900 via-gray-900 to-black">
+              {/* Background pattern overlay */}
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/30 via-transparent to-transparent pointer-events-none"></div>
+              
+              <header className="sticky top-0 z-40 w-full border-b border-gray-700/50 bg-gray-900/80 backdrop-blur-sm">
                 <div className="flex h-16 items-center space-x-4 px-6 sm:justify-between sm:space-x-0">
-                  <div className="flex items-center gap-6 text-base font-medium">
-                    <h1 className="text-xl font-bold">
-                      Vibe Coding Tools Index
-                    </h1>
-                  </div>
-                  <div className="flex flex-1 items-center justify-end space-x-4">
+                  <div className="flex flex-1 items-center justify-center space-x-4">
                     <a
-                      href={process.env.NEXT_PUBLIC_METHODOLOGY_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-800"
+                      href="/blog/vibecoding-leaderboard-methodology"
+                      className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -81,7 +77,7 @@ export default function RootLayout({
                   </div>
                 </div>
               </header>
-              <main className="flex-1 px-6 py-6">{children}</main>
+              <main className="relative flex-1">{children}</main>
             </div>
           </ProjectProvider>
         </ThemeProvider>

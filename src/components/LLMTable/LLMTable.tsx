@@ -13,7 +13,7 @@ export const LLMTable = () => {
   )
 
   if (loading) {
-    return <div>Loading...</div>
+    return null
   }
 
   if (error) {
@@ -33,19 +33,19 @@ export const LLMTable = () => {
 
   return (
     <>
-      <div className="w-full">
+      <div className="w-full overflow-hidden rounded-xl border border-border bg-card shadow-tremor-card ring-1 ring-border">
         <table className="w-full">
           <thead>
-            <tr className="border-b">
-              <th className="py-2 text-left">Project</th>
-              <th className="py-2 text-left">Category</th>
+            <tr className="border-b border-border bg-muted/50 dark:bg-muted/30">
+              <th className="py-2 px-4 text-left">Project</th>
+              <th className="py-2 px-4 text-left">Category</th>
               {/* Headers for each criteria category */}
               {categories.map((category) => (
-                <th key={category} className="py-2 text-left">
+                <th key={category} className="py-2 px-4 text-left">
                   {category}
                 </th>
               ))}
-              <th className="py-2 text-left">Overall</th>
+              <th className="py-2 px-4 text-left">Overall</th>
             </tr>
           </thead>
           <tbody>
@@ -53,18 +53,18 @@ export const LLMTable = () => {
               return (
                 <tr
                   key={project.id}
-                  className="cursor-pointer border-b hover:bg-gray-50 dark:hover:bg-gray-800"
+                  className="cursor-pointer border-b border-border hover:bg-muted/70 dark:hover:bg-muted/40 transition-colors"
                   onClick={() => setSelectedProjectId(project.id)}
                 >
-                  <td className="py-2">{project.name}</td>
-                  <td className="py-2">{project.category}</td>
+                  <td className="py-2 px-4">{project.name}</td>
+                  <td className="py-2 px-4">{project.category}</td>
                   {/* Scores for each category */}
                   {categories.map((category) => {
                     const categoryScore =
                       project.scores.categories[category].score
 
                     return (
-                      <td key={category} className="py-2">
+                      <td key={category} className="py-2 px-4">
                         <Badge color={getScoreColor(categoryScore)}>
                           {categoryScore.toFixed(1)}
                         </Badge>
@@ -72,7 +72,7 @@ export const LLMTable = () => {
                     )
                   })}
                   {/* Overall score */}
-                  <td className="py-2">
+                  <td className="py-2 px-4">
                     <Badge color={getScoreColor(project.scores.overall)}>
                       {project.scores.overall.toFixed(1)}
                     </Badge>

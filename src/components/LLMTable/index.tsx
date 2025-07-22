@@ -12,7 +12,7 @@ import Image from "next/image"
 import { ProjectModal } from "../ProjectModal"
 import { capitalizeFirstLetter } from "@/lib/utils"
 import { useProjects } from "@/contexts/ProjectContext"
-import { ProjectsRadarChart } from "./ProjectsRadarChart"
+
 
 const CRITERIA_CATEGORIES: CriteriaCategoryBase[] = [
   "Code Quality Support",
@@ -35,7 +35,6 @@ export function LLMTable() {
     selectedProviders,
     setSelectedProviders,
   } = useProjects()
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([])
   const [sortConfig, setSortConfig] = useState<{
     key: string
     direction: "asc" | "desc"
@@ -46,7 +45,7 @@ export function LLMTable() {
   )
 
   if (loading) {
-    return <div>Loading...</div>
+    return null
   }
 
   if (error) {
@@ -54,23 +53,15 @@ export function LLMTable() {
   }
 
   const getBadgeColor = (score: number) => {
-    if (score >= 9) return "green"
-    if (score >= 7) return "yellow"
-    return "red"
+    if (score >= 9) return "purple"
+    if (score >= 7) return "purple-light"
+    return "purple-dark"
   }
 
   // Get unique categories from projects
   if (transformedProjects.length > 0 && uniqueCategories.length === 0) {
     const categories = [...new Set(transformedProjects.map((p) => p.category))]
     setUniqueCategories(categories)
-  }
-
-  const toggleCategory = (category: string) => {
-    setSelectedCategories((prev) =>
-      prev.includes(category)
-        ? prev.filter((c) => c !== category)
-        : [...prev, category],
-    )
   }
 
   const toggleProvider = (provider: ModelProvider) => {
@@ -115,11 +106,7 @@ export function LLMTable() {
   }
 
   const filteredProjects = transformedProjects
-    .filter((project) =>
-      selectedCategories.length === 0
-        ? true
-        : selectedCategories.includes(project.category),
-    )
+    .filter(() => true) // No category filter, so always true
     .filter((project) => {
       if (selectedProviders.length === 0) return true
 
@@ -163,13 +150,12 @@ export function LLMTable() {
 
   return (
     <div className="space-y-6">
-      <ProjectsRadarChart projects={filteredProjects} />
-      <div className="w-full overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-950">
-        <div className="border-b border-gray-200 px-4 py-4 sm:px-6 dark:border-gray-800">
+      <div className="w-full overflow-hidden rounded-2xl border-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black shadow-lg">
+        <div className="border-b border-purple-900 px-4 py-4 sm:px-6 bg-transparent">
           <div className="flex flex-col gap-4">
             {/* Model provider filters */}
             <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+              <span className="text-sm font-medium text-purple-100">
                 Model:
               </span>
               <div className="flex flex-wrap gap-2">
@@ -177,11 +163,13 @@ export function LLMTable() {
                   <button
                     key={provider.id}
                     onClick={() => toggleProvider(provider.id)}
-                    className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
-                      selectedProviders.includes(provider.id)
-                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                        : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-                    }`}
+                    className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium transition-colors border border-purple-700/40 shadow-sm
+                      ${
+                        selectedProviders.includes(provider.id)
+                          ? "bg-purple-700/80 text-white"
+                          : "bg-purple-900/40 text-purple-100 hover:bg-purple-800/60"
+                      }
+                    `}
                   >
                     <Image
                       src={provider.icon}
@@ -195,8 +183,8 @@ export function LLMTable() {
                 ))}
               </div>
             </div>
-
-            {/* Category filters */}
+            {/* Category filters hidden for now */}
+            {/*
             <div className="flex items-center gap-2">
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 Category:
@@ -208,7 +196,7 @@ export function LLMTable() {
                     onClick={() => toggleCategory(category)}
                     className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
                       selectedCategories.includes(category)
-                        ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                        ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
                         : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
                     }`}
                   >
@@ -217,15 +205,16 @@ export function LLMTable() {
                 ))}
               </div>
             </div>
+            */}
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-800">
+          <table className="min-w-full divide-y divide-purple-900 bg-transparent rounded-2xl">
+            <thead className="bg-gradient-to-r from-purple-950/30 via-purple-950/10 to-purple-950/30">
               <tr>
                 <th
                   scope="col"
-                  className="cursor-pointer px-4 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  className="cursor-pointer px-4 py-3.5 text-left text-sm font-semibold text-purple-100"
                   onClick={() => handleSort("name")}
                 >
                   Name{" "}
@@ -234,19 +223,19 @@ export function LLMTable() {
                 </th>
                 <th
                   scope="col"
-                  className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  className="px-4 py-3.5 text-left text-sm font-semibold text-purple-100"
                 >
                   Category
                 </th>
                 <th
                   scope="col"
-                  className="px-4 py-3.5 text-left text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  className="px-4 py-3.5 text-left text-sm font-semibold text-purple-100"
                 >
                   Best Models
                 </th>
                 <th
                   scope="col"
-                  className="cursor-pointer px-4 py-3.5 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
+                  className="cursor-pointer px-4 py-3.5 text-center text-sm font-semibold text-purple-100"
                   onClick={() => handleSort("overall")}
                 >
                   Overall Score{" "}
@@ -257,27 +246,26 @@ export function LLMTable() {
                   <th
                     key={category}
                     scope="col"
-                    className="cursor-pointer px-4 py-3.5 text-center text-sm font-semibold text-gray-900 dark:text-gray-100"
+                    className="cursor-pointer px-4 py-3.5 text-center text-sm font-semibold text-purple-100"
                     onClick={() => handleSort(category)}
                   >
-                    {category}{" "}
-                    {sortConfig.key === category &&
+                    {category} {sortConfig.key === category &&
                       (sortConfig.direction === "asc" ? "↑" : "↓")}
                   </th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
+            <tbody className="divide-y divide-purple-900/60">
               {sortedProjects.map((project) => (
                 <tr
                   key={project.id}
                   onClick={() => setSelectedProjectId(project.id)}
-                  className="cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-700"
+                  className="cursor-pointer hover:bg-purple-900/30 transition-colors"
                 >
-                  <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-gray-900 dark:text-gray-100">
+                  <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-purple-100">
                     {project.name}
                   </td>
-                  <td className="whitespace-nowrap px-4 py-4 text-sm text-gray-700 dark:text-gray-300">
+                  <td className="whitespace-nowrap px-4 py-4 text-sm text-purple-200">
                     {capitalizeFirstLetter(project.category)}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-sm">
