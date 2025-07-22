@@ -73,12 +73,7 @@ export interface RunMetadata {
 }
 
 // Group models by provider
-export type ModelProvider =
-  | "chatgpt"
-  | "claude"
-  | "gemini"
-  | "perplexity"
-  | "other"
+export type ModelProvider = "chatgpt" | "claude" | "gemini" | "other"
 
 export interface ModelScore {
   provider: ModelProvider

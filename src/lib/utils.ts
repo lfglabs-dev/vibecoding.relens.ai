@@ -145,38 +145,9 @@ export const getCategoryScores = (surveys: any[]) => {
 
 // Model family patterns
 const MODEL_PATTERNS = {
-  claude: [
-    { pattern: /^claude-3-5-haiku/, name: "Claude 3.5 Haiku" },
-    { pattern: /^claude-3-5-opus/, name: "Claude 3.5 Opus" },
-    { pattern: /^claude-3-sonnet/, name: "Claude 3 Sonnet" },
-    { pattern: /^claude-2\.1/, name: "Claude 2.1" },
-    { pattern: /^claude-2$/, name: "Claude 2" },
-    { pattern: /^claude-instant/, name: "Claude Instant" },
-  ],
-  gpt: [
-    { pattern: /^gpt-4-turbo/, name: "GPT-4 Turbo" },
-    { pattern: /^gpt-4o-mini/, name: "GPT-4 Mini" },
-    { pattern: /^gpt-4-32k/, name: "GPT-4 32K" },
-    { pattern: /^gpt-4/, name: "GPT-4" },
-    { pattern: /^gpt-3\.5-turbo-16k/, name: "GPT-3.5 Turbo 16K" },
-    { pattern: /^gpt-3\.5-turbo/, name: "GPT-3.5 Turbo" },
-  ],
-  gemini: [
-    { pattern: /^google\/gemini-2\.5-flash-preview/, name: "Gemini 2.5 Flash" },
-    { pattern: /^google\/gemini-2\.5-flash/, name: "Gemini 2.5 Flash" },
-    { pattern: /^gemini-pro/, name: "Gemini Pro" },
-    { pattern: /^gemini-ultra/, name: "Gemini Ultra" },
-  ],
-  perplexity: [
-    { pattern: /^sonar-deep-research$/, name: "Perplexity Deep Research" },
-    { pattern: /^sonar$/, name: "Perplexity Sonar" },
-  ],
-}
-
-// Exact matches for special cases
-const MODEL_NAME_MAPPINGS: Record<string, string> = {
-  sonar: "Perplexity Sonar",
-  "sonar-deep-research": "Perplexity Deep Research",
+  claude: [{ pattern: /^claude/, name: "Claude Sonnet 4" }],
+  gpt: [{ pattern: /^gpt-4/, name: "GPT 4o" }],
+  gemini: [{ pattern: /^google\/gemini/, name: "Gemini 2.5 pro" }],
 }
 
 export const getReadableModelName = (modelName: string): string => {

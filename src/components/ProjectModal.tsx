@@ -23,8 +23,6 @@ const getProviderIcon = (provider: ModelProvider) => {
       return "/llms/claude.webp"
     case "gemini":
       return "/llms/gemini.webp"
-    case "perplexity":
-      return "/llms/perplexity.webp"
     default:
       return null
   }
