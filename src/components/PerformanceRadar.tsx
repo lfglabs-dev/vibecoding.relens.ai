@@ -90,13 +90,13 @@ export const PerformanceRadar = () => {
 
   // Logo mapping based on project names
   const logoMapping: Record<string, string> = {
-    'PostgreSQL': 'https://logo.clearbit.com/postgresql.com',
-    'Supabase': 'https://logo.clearbit.com/supabase.com',
-    'PlanetScale': 'https://logo.clearbit.com/planetscale.com',
-    'MongoDB': 'https://logo.clearbit.com/mongodb.com',
-    'Neon': 'https://logo.clearbit.com/neon.com',
-    'SQLite': 'https://logo.clearbit.com/sqlite.com',
-    'Firestore': 'https://logo.clearbit.com/firestore.com',
+    'PostgreSQL': '/logos/postgresql.png',
+    'Supabase': '/logos/supabase.png',
+    'PlanetScale': '/logos/planetscale.png',
+    'MongoDB': '/logos/mongodb.png',
+    'Neon': '/logos/neon.png',
+    'SQLite': '/logos/sqlite.png',
+    'Firestore': '/logos/firestore.png',
   };
 
   // Fallback icon for projects without logos
