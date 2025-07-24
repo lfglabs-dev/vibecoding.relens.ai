@@ -47,7 +47,10 @@ export function ProjectModal({
 
   return (
     <Dialog open={isOpen} onClose={onClose} className="relative z-50">
-      <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" aria-hidden="true" />
+      <div
+        className="fixed inset-0 bg-black/30 backdrop-blur-sm"
+        aria-hidden="true"
+      />
 
       <div className="fixed inset-0 overflow-y-auto">
         <div className="flex min-h-full items-center justify-center p-4">
@@ -60,19 +63,19 @@ export function ProjectModal({
             leaveFrom="opacity-100 scale-100"
             leaveTo="opacity-0 scale-95"
           >
-            <Dialog.Panel className="relative w-full max-w-4xl transform overflow-hidden rounded-2xl bg-gradient-to-br from-[#0a001a] via-[#1a0033] to-[#2d004d] p-0 text-left align-middle shadow-2xl transition-all border border-[#2d004d]">
+            <Dialog.Panel className="relative w-full max-w-4xl transform overflow-hidden rounded-2xl border border-[#2d004d] bg-gradient-to-br from-[#0a001a] via-[#1a0033] to-[#2d004d] p-0 text-left align-middle shadow-2xl transition-all">
               {/* Subtle Accent Bar */}
               <div className="h-1 w-full bg-[#2d004d]" />
               {/* Close Button */}
               <button
                 onClick={onClose}
-                className="absolute right-6 top-6 z-10 rounded-full bg-[#1a0033] p-2 text-purple-200 hover:bg-[#2d004d] transition-colors"
+                className="absolute right-6 top-6 z-10 rounded-full bg-[#1a0033] p-2 text-purple-200 transition-colors hover:bg-[#2d004d]"
                 aria-label="Close modal"
               >
                 <X size={22} />
               </button>
               {/* Header */}
-              <div className="px-10 pt-8 pb-2">
+              <div className="px-10 pb-2 pt-8">
                 <Dialog.Title className="mb-2 text-3xl font-bold text-purple-100">
                   {project.name}
                 </Dialog.Title>
@@ -84,8 +87,10 @@ export function ProjectModal({
               {/* Score Cards */}
               <div className="mb-8 grid grid-cols-2 gap-8 px-10">
                 {/* Overall Score */}
-                <div className="flex flex-col items-start justify-start rounded-2xl bg-[#12001a] p-8 shadow border border-[#2d004d]">
-                  <h3 className="mb-6 text-xl font-semibold text-purple-200">Overall Score</h3>
+                <div className="flex flex-col items-start justify-start rounded-2xl border border-[#2d004d] bg-[#12001a] p-8 shadow">
+                  <h3 className="mb-6 text-xl font-semibold text-purple-200">
+                    Overall Score
+                  </h3>
                   <div className="flex items-baseline">
                     <div className="text-[72px] font-extrabold leading-none tracking-tighter text-purple-300">
                       {overallScore.toFixed(1)}
@@ -97,8 +102,10 @@ export function ProjectModal({
                 </div>
 
                 {/* Best Model */}
-                <div className="flex flex-col items-start justify-start rounded-2xl bg-[#12001a] p-8 shadow border border-[#2d004d] relative">
-                  <span className="absolute right-6 top-6 rounded-full bg-[#2d004d] px-3 py-1 text-xs font-bold text-purple-200 shadow">Best</span>
+                <div className="relative flex flex-col items-start justify-start rounded-2xl border border-[#2d004d] bg-[#12001a] p-8 shadow">
+                  <span className="absolute right-6 top-6 rounded-full bg-[#2d004d] px-3 py-1 text-xs font-bold text-purple-200 shadow">
+                    Best
+                  </span>
                   <h3 className="mb-6 text-xl font-semibold text-purple-200">
                     Best Performing Model
                   </h3>
@@ -134,13 +141,15 @@ export function ProjectModal({
 
               {/* Category Scores */}
               <div className="space-y-4 p-10">
-                <h3 className="mb-4 text-xl font-semibold text-purple-200">Category Breakdown</h3>
+                <h3 className="mb-4 text-xl font-semibold text-purple-200">
+                  Category Breakdown
+                </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {Object.entries(transformedProject.scores.categories).map(
                     ([category, data]) => (
                       <div
                         key={category}
-                        className="flex flex-col rounded-xl bg-[#12001a] p-6 border border-[#2d004d] shadow"
+                        className="flex flex-col rounded-xl border border-[#2d004d] bg-[#12001a] p-6 shadow"
                       >
                         <div className="mb-4 flex items-center justify-between">
                           <span className="text-lg font-semibold text-purple-100">
@@ -236,7 +245,7 @@ export function ProjectModal({
                       .map((model) => (
                         <div
                           key={model.name}
-                          className="overflow-hidden rounded-xl bg-[#12001a] border border-[#2d004d] shadow"
+                          className="overflow-hidden rounded-xl border border-[#2d004d] bg-[#12001a] shadow"
                         >
                           {/* Model Header */}
                           <div
@@ -315,8 +324,12 @@ export function ProjectModal({
                                     </div>
                                     <ul className="space-y-2">
                                       {data.criteria.map((criteria) => {
+                                        const modelCriteriaScores =
+                                          data.criteriaScoresPerModel[
+                                            model.provider
+                                          ]?.[model.name]
                                         const criteriaScore =
-                                          data.criteriaScores[criteria.name]
+                                          modelCriteriaScores?.[criteria.name]
                                         return (
                                           <li
                                             key={criteria.name}
