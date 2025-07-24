@@ -161,10 +161,33 @@ const calculateModelScores = (
 const calculateCriteriaScores = (
   runsWithSurveys: Array<{ run: SurveyRun; survey: Survey }>,
   selectedProviders: ModelProvider[] = [],
-): Record<CriteriaCategoryBase, Record<string, number>> => {
-  const scoresByCriteria = Object.fromEntries(
-    CATEGORIES.map((category) => [category, {}]),
-  ) as Record<CriteriaCategoryBase, Record<string, number[]>>
+): {
+  overall: Record<CriteriaCategoryBase, Record<string, number>>
+  perModel: Record<
+    CriteriaCategoryBase,
+    Record<string, Record<string, Record<string, number>>>
+  >
+} => {
+  // Initialize with all categories
+  const scoresByCriteria: Record<
+    CriteriaCategoryBase,
+    Record<string, number[]>
+  > = {
+    "Code Quality Support": {},
+    "Code Compilation": {},
+    "Problem Solving Helpfulness": {},
+    "Security Awareness": {},
+  }
+
+  const scoresPerModel: Record<
+    CriteriaCategoryBase,
+    Record<string, Record<string, Record<string, number[]>>>
+  > = {
+    "Code Quality Support": {},
+    "Code Compilation": {},
+    "Problem Solving Helpfulness": {},
+    "Security Awareness": {},
+  }
 
   // Collect scores by criteria
   runsWithSurveys.forEach(({ run, survey }) => {
@@ -193,25 +216,78 @@ const calculateCriteriaScores = (
 
     run.result.criteria_evaluations.forEach((evaluation) => {
       const criteriaName = stripNumberPrefix(evaluation.criteria)
+
+      // Overall scores
       if (!scoresByCriteria[category][criteriaName]) {
         scoresByCriteria[category][criteriaName] = []
       }
       scoresByCriteria[category][criteriaName].push(evaluation.grade)
+
+      // Per-model scores
+      if (!scoresPerModel[category][provider]) {
+        scoresPerModel[category][provider] = {}
+      }
+      if (!scoresPerModel[category][provider][modelName]) {
+        scoresPerModel[category][provider][modelName] = {}
+      }
+      if (!scoresPerModel[category][provider][modelName][criteriaName]) {
+        scoresPerModel[category][provider][modelName][criteriaName] = []
+      }
+      scoresPerModel[category][provider][modelName][criteriaName].push(
+        evaluation.grade,
+      )
     })
   })
 
-  // Calculate averages
-  return Object.fromEntries(
+  // Calculate averages for overall scores
+  const overallScores = Object.fromEntries(
     CATEGORIES.map((category) => [
       category,
       Object.fromEntries(
         Object.entries(scoresByCriteria[category]).map(([criteria, scores]) => [
           criteria,
-          scores.reduce((sum, score) => sum + score, 0) / scores.length,
+          scores.reduce((sum: number, score: number) => sum + score, 0) /
+            scores.length,
         ]),
       ),
     ]),
   ) as Record<CriteriaCategoryBase, Record<string, number>>
+
+  // Calculate averages for per-model scores
+  const perModelScores = Object.fromEntries(
+    CATEGORIES.map((category) => [
+      category,
+      Object.fromEntries(
+        Object.entries(scoresPerModel[category]).map(
+          ([provider, modelScores]) => [
+            provider,
+            Object.fromEntries(
+              Object.entries(modelScores).map(([modelName, criteriaScores]) => [
+                modelName,
+                Object.fromEntries(
+                  Object.entries(criteriaScores).map(([criteria, scores]) => [
+                    criteria,
+                    scores.reduce(
+                      (sum: number, score: number) => sum + score,
+                      0,
+                    ) / scores.length,
+                  ]),
+                ),
+              ]),
+            ),
+          ],
+        ),
+      ),
+    ]),
+  ) as Record<
+    CriteriaCategoryBase,
+    Record<string, Record<string, Record<string, number>>>
+  >
+
+  return {
+    overall: overallScores,
+    perModel: perModelScores,
+  }
 }
 
 const calculateOverallScore = (categoryScores: ModelScore[]): number => {
@@ -264,13 +340,9 @@ export const transformProject = (
   project: Project,
   selectedProviders: ModelProvider[] = [],
 ): TransformedProject => {
-  console.log("Transforming project:", project.name)
-
   const runsWithSurveys = getAllRuns(project.surveys)
-  console.log("Found runs:", runsWithSurveys.length)
 
   const categoryMap = getCriteriaByCategory(project.surveys)
-  console.log("Category map:", categoryMap)
 
   // Calculate scores by category with selected providers
   const categoryScores = calculateModelScores(
@@ -281,11 +353,8 @@ export const transformProject = (
   console.log("Category scores:", categoryScores)
 
   // Calculate criteria scores
-  const criteriaScores = calculateCriteriaScores(
-    runsWithSurveys,
-    selectedProviders,
-  )
-  console.log("Criteria scores:", criteriaScores)
+  const { overall: criteriaScores, perModel: criteriaScoresPerModel } =
+    calculateCriteriaScores(runsWithSurveys, selectedProviders)
 
   // Calculate overall scores and get top models
   const scores = {
@@ -298,6 +367,7 @@ export const transformProject = (
             score: calculateOverallScore(modelScores),
             modelScores,
             criteriaScores: criteriaScores[category] || {},
+            criteriaScoresPerModel: criteriaScoresPerModel[category] || {},
             criteria: project.surveys
               .filter(
                 (survey) => survey.pipeline_metadata?.feature_name === category,
@@ -323,6 +393,10 @@ export const transformProject = (
         score: number
         modelScores: ModelScore[]
         criteriaScores: Record<string, number>
+        criteriaScoresPerModel: Record<
+          string,
+          Record<string, Record<string, number>>
+        >
         criteria: CriteriaDefinition[]
       }
     >,
@@ -331,8 +405,6 @@ export const transformProject = (
       Object.values(categoryScores).flatMap((scores) => scores || []),
     ),
   }
-
-  console.log("Final scores:", scores)
 
   // Transform criteria definitions to match the interface
   const criteriaDefinitions = project.surveys

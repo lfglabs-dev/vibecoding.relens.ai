@@ -115,6 +115,10 @@ export interface TransformedProject {
         score: number
         modelScores: ModelScore[]
         criteriaScores: Record<string, number>
+        criteriaScoresPerModel: Record<
+          string,
+          Record<string, Record<string, number>>
+        >
         criteria: CriteriaDefinition[]
       }
     }
