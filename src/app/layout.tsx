@@ -54,7 +54,7 @@ export default function RootLayout({
                 <div className="flex h-16 items-center space-x-4 px-6 sm:justify-between sm:space-x-0">
                   <div className="flex flex-1 items-center justify-center space-x-4">
                     <a
-                      href="/blog/vibecoding-leaderboard-methodology"
+                      href="https://relens.ai/blog/vibecoding-leaderboard-methodology"
                       className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
                     >
                       <svg

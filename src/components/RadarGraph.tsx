@@ -93,10 +93,23 @@ export const RadarGraph = () => {
   console.log('Radar series data:', series);
   console.log('Filtered projects:', filteredProjects);
 
+  // Calculate dynamic scale based on actual data
+  const allDataPoints = series.flatMap(s => s.data);
+  const minValue = Math.min(...allDataPoints);
+  const maxValue = Math.max(...allDataPoints);
+  const dataRange = maxValue - minValue;
+  
+  // Create a very focused scale that maximizes differences
+  // Use minimal padding to zoom in on the data range
+  const scalePadding = dataRange * 0.02; // Only 2% padding for maximum zoom
+  const dynamicMin = Math.max(0, minValue - scalePadding);
+  const dynamicMax = maxValue + scalePadding;
+
   const commonSettings = {
     height: 500,
     radar: {
-      max: 10,
+      min: dynamicMin,
+      max: dynamicMax,
       metrics: RADAR_METRICS.map(metric => 
         metric.replace(' Support', '').replace(' Helpfulness', '').replace(' Awareness', '')
       ),
