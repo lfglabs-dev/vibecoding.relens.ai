@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes"
 import localFont from "next/font/local"
 import "./globals.css"
 import { ProjectProvider } from "@/contexts/ProjectContext"
+import { Github } from "lucide-react"
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -51,8 +52,8 @@ export default function RootLayout({
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/30 via-transparent to-transparent pointer-events-none"></div>
               
               <header className="sticky top-0 z-40 w-full border-b border-gray-700/50 bg-gray-900/80 backdrop-blur-sm">
-                <div className="flex h-16 items-center space-x-4 px-6 sm:justify-between sm:space-x-0">
-                  <div className="flex flex-1 items-center justify-center space-x-4">
+                <div className="flex h-16 items-center px-6">
+                  <div className="flex flex-1 items-center justify-center">
                     <a
                       href="https://relens.ai/blog/vibecoding-leaderboard-methodology"
                       className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-gray-300 transition-colors hover:bg-gray-800"
@@ -75,6 +76,15 @@ export default function RootLayout({
                       Methodology
                     </a>
                   </div>
+                  <a
+                    href="https://github.com/lfglabs-dev/vibecoding.relens.ai"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center rounded-lg p-2 text-gray-300 transition-colors hover:bg-gray-800"
+                    aria-label="View source code on GitHub"
+                  >
+                    <Github size={20} />
+                  </a>
                 </div>
               </header>
               <main className="relative flex-1">{children}</main>
