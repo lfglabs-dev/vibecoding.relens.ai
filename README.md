@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🧠 Vibecoding Leaderboard — Methodology
 
-## Getting Started
+The Vibecoding Leaderboard is a new way to benchmark how well AI models *actually code* — not just talk about code. It evaluates real-world performance across a wide range of technologies using a rigorous, multi-step process.
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## ⚙️ How It Works
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 1. Prompt → Code → Execution → Validation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Each AI model is tested using two autonomous agents:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Querier Agent**  
+  Prompts the AI to generate code, compiles it, runs it in a sandboxed Docker environment, and submits the output.
 
-## Learn More
+- **Quantifier Agent**  
+  Independently validates the results using logs, outputs, tests, and other tooling. It ensures no model is judged by its own hallucinated standard.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📊 Scoring Dimensions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Each AI is scored across multiple objective dimensions:
 
-## Deploy on Vercel
+| Category               | What It Measures |
+|------------------------|------------------|
+| ✅ **Compilation**      | Does the code build and run successfully? |
+| 🧠 **Code Quality**     | Is the code idiomatic, minimal, and correct? |
+| 🔐 **Security Awareness** | Does it handle secrets, roles, and permissions properly? |
+| 🧰 **Helpfulness**      | Is the response contextual, version-aware, and good at diagnosing issues? |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Only answers that **compile, pass all validations, and demonstrate good practice** receive top scores (9–10).
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🏆 Why It Matters
+
+Most AI coding benchmarks rely on static comparisons or hallucinated metrics. Vibecoding simulates *real developer workflows* — run the code, test the output, and judge only with objective evidence.
+
+No more hand-wavy "correctness" claims. This leaderboard tracks whether AI can *vibe* like a real engineer.
+
+> Learn more at [relens.ai](https://relens.ai/blog/vibecoding-leaderboard-methodology)
+
