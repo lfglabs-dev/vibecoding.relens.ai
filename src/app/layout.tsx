@@ -28,6 +28,9 @@ export const metadata: Metadata = {
     },
   ],
   creator: "ReLens AI",
+  alternates: {
+    canonical: "https://vivecoding.relance.ai/",
+  },
 }
 
 export default function RootLayout({
