@@ -16,6 +16,49 @@ const CATEGORIES: CriteriaCategoryBase[] = [
   "Security Awareness",
 ]
 
+// Try to map whatever is in pipeline_metadata.feature_name to one of our canonical categories.
+const normalizeCategory = (
+  featureName?: string | null,
+): CriteriaCategoryBase | null => {
+  if (!featureName) return null
+
+  // If it's already one of our categories, keep it
+  if (CATEGORIES.includes(featureName as CriteriaCategoryBase)) {
+    return featureName as CriteriaCategoryBase
+  }
+
+  const f = featureName.toLowerCase()
+
+  if (f.includes("quality") || f.includes("architecture"))
+    return "Code Quality Support"
+  if (f.includes("compil") || f.includes("build")) return "Code Compilation"
+  if (f.includes("help") || f.includes("support") || f.includes("troubleshoot"))
+    return "Problem Solving Helpfulness"
+  if (f.includes("secur") || f.includes("auth") || f.includes("permission"))
+    return "Security Awareness"
+
+  return null
+}
+
+// Safely extract criteria list from pipeline_metadata, supporting multiple possible keys.
+const getCriteriaList = (
+  metadata:
+    | {
+        criterias?: string[]
+        criteria?: string[]
+        criteria_list?: string[]
+        [key: string]: unknown
+      }
+    | null
+    | undefined,
+): string[] => {
+  if (!metadata || typeof metadata !== "object") return []
+  if (Array.isArray(metadata.criterias)) return metadata.criterias
+  if (Array.isArray(metadata.criteria)) return metadata.criteria
+  if (Array.isArray(metadata.criteria_list)) return metadata.criteria_list
+  return []
+}
+
 export const getModelProvider = (modelName: string): ModelProvider => {
   const name = modelName.toLowerCase()
   if (name.includes("gpt")) return "chatgpt"
@@ -59,55 +102,98 @@ const getAllRuns = (
   )
 }
 
-const getCriteriaByCategory = (surveys: Survey[]): Record<string, string[]> => {
-  const categoryMap: Record<string, string[]> = {}
-
-  // Initialize empty arrays for each category
-  CATEGORIES.forEach((category) => {
-    categoryMap[category] = []
-  })
-
-  // Go through each survey to collect criteria
-  surveys.forEach((survey) => {
-    // Get the category from the survey name or feature_name
-    const category = survey.pipeline_metadata
-      ?.feature_name as CriteriaCategoryBase
-    if (CATEGORIES.includes(category) && survey.pipeline_metadata?.criterias) {
-      // Add each criteria to the appropriate category
-      survey.pipeline_metadata.criterias.forEach((criteria: string) => {
-        const strippedName = stripNumberPrefix(criteria)
-        if (!categoryMap[category].includes(strippedName)) {
-          categoryMap[category].push(strippedName)
+// Normalize different result shapes into a common "evaluation" format.
+// Older data: result.criteria_evaluations[]
+// Newer data (as in the sample): result.understanding (0-10) + optional review.
+// Presence-style data: result.present: boolean
+// Ranking-style data: result.results: { [query]: { rank: number } }
+const getEvaluationsFromRun = (
+  run: SurveyRun,
+): { grade: number; criteria: string; review?: string }[] => {
+  const result = run.result as {
+    review?: string
+    understanding?: number
+    present?: boolean
+    results?:
+      | {
+          [query: string]: {
+            rank?: number
+            [key: string]: unknown
+          }
         }
-      })
-    }
-  })
+      | unknown
+    [key: string]: unknown
+  }
+  if (!result) return []
 
-  return categoryMap
+  // Fallback: single aggregate score, e.g. "understanding"
+  if (typeof result.understanding === "number") {
+    return [
+      {
+        grade: result.understanding,
+        criteria: "Understanding",
+        review: result.review,
+      },
+    ]
+  }
+
+  // Presence-style result: map present=true -> 10, false -> 0
+  if (typeof result.present === "boolean") {
+    return [
+      {
+        grade: result.present ? 10 : 0,
+        criteria: "Presence",
+        review: result.review,
+      },
+    ]
+  }
+
+  // Ranking-style result: results: { [query]: { rank: number } }
+  if (result.results && typeof result.results === "object") {
+    const evals: { grade: number; criteria: string }[] = []
+    for (const [query, info] of Object.entries(
+      result.results as Record<string, { rank?: number } | undefined>,
+    )) {
+      const rank = info?.rank
+      if (typeof rank === "number") {
+        // Convert rank (1 = best) into a 0-10 score. If rank is 0 or negative, treat as 0.
+        const grade = rank <= 0 ? 0 : Math.max(0, 11 - rank)
+        evals.push({
+          grade,
+          criteria: `Ranking: ${query}`,
+        })
+      }
+    }
+    if (evals.length > 0) {
+      return evals
+    }
+  }
+
+  return []
 }
 
 const calculateModelScores = (
   runsWithSurveys: Array<{ run: SurveyRun; survey: Survey }>,
-  categoryMap: Record<string, string[]>,
   selectedProviders: ModelProvider[] = [],
 ): Record<CriteriaCategoryBase, ModelScore[]> => {
   const scoresByCategory: Record<
-    string,
+    CriteriaCategoryBase,
     Record<string, Record<string, number[]>>
-  > = {}
-
-  // Initialize categories
-  CATEGORIES.forEach((category) => {
-    scoresByCategory[category] = {}
-  })
+  > = {
+    "Code Quality Support": {},
+    "Code Compilation": {},
+    "Problem Solving Helpfulness": {},
+    "Security Awareness": {},
+  }
 
   // Collect scores by category, provider, and model
   runsWithSurveys.forEach(({ run, survey }) => {
-    if (!run.result?.criteria_evaluations) return
+    const evaluations = getEvaluationsFromRun(run)
+    if (evaluations.length === 0) return
 
-    const category = survey.pipeline_metadata
-      ?.feature_name as CriteriaCategoryBase
-    if (!CATEGORIES.includes(category)) return
+    const category =
+      normalizeCategory(survey.pipeline_metadata?.feature_name) ??
+      "Problem Solving Helpfulness"
 
     const modelName = run.metadata?.querier?.model_used?.name
     if (!modelName) return
@@ -126,7 +212,7 @@ const calculateModelScores = (
       return
     }
 
-    run.result.criteria_evaluations.forEach((evaluation) => {
+    evaluations.forEach((evaluation) => {
       if (!scoresByCategory[category][provider]) {
         scoresByCategory[category][provider] = {}
       }
@@ -191,11 +277,12 @@ const calculateCriteriaScores = (
 
   // Collect scores by criteria
   runsWithSurveys.forEach(({ run, survey }) => {
-    if (!run.result?.criteria_evaluations) return
+    const evaluations = getEvaluationsFromRun(run)
+    if (evaluations.length === 0) return
 
-    const category = survey.pipeline_metadata
-      ?.feature_name as CriteriaCategoryBase
-    if (!CATEGORIES.includes(category)) return
+    const category =
+      normalizeCategory(survey.pipeline_metadata?.feature_name) ??
+      "Problem Solving Helpfulness"
 
     const modelName = run.metadata?.querier?.model_used?.name
     if (!modelName) return
@@ -214,7 +301,7 @@ const calculateCriteriaScores = (
       return
     }
 
-    run.result.criteria_evaluations.forEach((evaluation) => {
+    evaluations.forEach((evaluation) => {
       const criteriaName = stripNumberPrefix(evaluation.criteria)
 
       // Overall scores
@@ -342,15 +429,16 @@ export const transformProject = (
 ): TransformedProject => {
   const runsWithSurveys = getAllRuns(project.surveys)
 
-  const categoryMap = getCriteriaByCategory(project.surveys)
+  // Determine if this project has at least one evaluated run (any numeric signal)
+  const hasEvaluations = runsWithSurveys.some(
+    ({ run }) => getEvaluationsFromRun(run).length > 0,
+  )
 
   // Calculate scores by category with selected providers
   const categoryScores = calculateModelScores(
     runsWithSurveys,
-    categoryMap,
     selectedProviders,
   )
-  console.log("Category scores:", categoryScores)
 
   // Calculate criteria scores
   const { overall: criteriaScores, perModel: criteriaScoresPerModel } =
@@ -370,10 +458,12 @@ export const transformProject = (
             criteriaScoresPerModel: criteriaScoresPerModel[category] || {},
             criteria: project.surveys
               .filter(
-                (survey) => survey.pipeline_metadata?.feature_name === category,
+                (survey) =>
+                  (normalizeCategory(survey.pipeline_metadata?.feature_name) ??
+                    "Problem Solving Helpfulness") === category,
               )
               .flatMap((survey) =>
-                (survey.pipeline_metadata?.criterias || []).map(
+                getCriteriaList(survey.pipeline_metadata).map(
                   (criteria: string) => ({
                     name: stripNumberPrefix(criteria),
                     description: criteria.split(":")[1]?.trim() || "",
@@ -409,7 +499,7 @@ export const transformProject = (
   // Transform criteria definitions to match the interface
   const criteriaDefinitions = project.surveys
     .flatMap((survey) =>
-      (survey.pipeline_metadata?.criterias || []).map((criteria: string) => ({
+      getCriteriaList(survey.pipeline_metadata).map((criteria: string) => ({
         name: stripNumberPrefix(criteria),
         description: criteria.split(":")[1]?.trim() || "",
       })),
@@ -424,6 +514,7 @@ export const transformProject = (
     name: project.name,
     description: project.description,
     category: project.project_metadata.index_category,
+    hasEvaluations,
     criteriaDefinitions,
     scores,
   }

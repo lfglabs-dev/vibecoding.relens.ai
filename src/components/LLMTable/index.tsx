@@ -13,7 +13,6 @@ import { ProjectModal } from "../ProjectModal"
 import { capitalizeFirstLetter } from "@/lib/utils"
 import { useProjects } from "@/contexts/ProjectContext"
 
-
 const CRITERIA_CATEGORIES: CriteriaCategoryBase[] = [
   "Code Quality Support",
   "Code Compilation",
@@ -39,7 +38,6 @@ export function LLMTable() {
     key: string
     direction: "asc" | "desc"
   }>({ key: "overall", direction: "asc" })
-  const [uniqueCategories, setUniqueCategories] = useState<string[]>([])
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null,
   )
@@ -56,12 +54,6 @@ export function LLMTable() {
     if (score >= 9) return "purple"
     if (score >= 7) return "purple-light"
     return "purple-dark"
-  }
-
-  // Get unique categories from projects
-  if (transformedProjects.length > 0 && uniqueCategories.length === 0) {
-    const categories = [...new Set(transformedProjects.map((p) => p.category))]
-    setUniqueCategories(categories)
   }
 
   const toggleProvider = (provider: ModelProvider) => {
@@ -106,7 +98,10 @@ export function LLMTable() {
   }
 
   const filteredProjects = transformedProjects
-    .filter(() => true) // No category filter, so always true
+    // Only keep projects that actually have at least one evaluated run
+    .filter((project) => project.hasEvaluations)
+    // And exclude projects whose overall score is 0 (no positive signal)
+    .filter((project) => project.scores.overall > 0)
     .filter((project) => {
       if (selectedProviders.length === 0) return true
 
@@ -151,7 +146,7 @@ export function LLMTable() {
   return (
     <div className="space-y-6">
       <div className="w-full overflow-hidden rounded-2xl border-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black shadow-lg">
-        <div className="border-b border-purple-900 px-4 py-4 sm:px-6 bg-transparent">
+        <div className="border-b border-purple-900 bg-transparent px-4 py-4 sm:px-6">
           <div className="flex flex-col gap-4">
             {/* Model provider filters */}
             <div className="flex items-center gap-2">
@@ -163,13 +158,11 @@ export function LLMTable() {
                   <button
                     key={provider.id}
                     onClick={() => toggleProvider(provider.id)}
-                    className={`flex items-center gap-2 rounded-full px-3 py-1.5 text-sm font-medium transition-colors border border-purple-700/40 shadow-sm
-                      ${
-                        selectedProviders.includes(provider.id)
-                          ? "bg-purple-700/80 text-white"
-                          : "bg-purple-900/40 text-purple-100 hover:bg-purple-800/60"
-                      }
-                    `}
+                    className={`flex items-center gap-2 rounded-full border border-purple-700/40 px-3 py-1.5 text-sm font-medium shadow-sm transition-colors ${
+                      selectedProviders.includes(provider.id)
+                        ? "bg-purple-700/80 text-white"
+                        : "bg-purple-900/40 text-purple-100 hover:bg-purple-800/60"
+                    } `}
                   >
                     <Image
                       src={provider.icon}
@@ -183,33 +176,10 @@ export function LLMTable() {
                 ))}
               </div>
             </div>
-            {/* Category filters hidden for now */}
-            {/*
-            <div className="flex items-center gap-2">
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Category:
-              </span>
-              <div className="flex flex-wrap gap-2">
-                {uniqueCategories.map((category) => (
-                  <button
-                    key={category}
-                    onClick={() => toggleCategory(category)}
-                    className={`rounded-full px-3 py-1 text-sm font-medium transition-colors ${
-                      selectedCategories.includes(category)
-                        ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
-                        : "bg-gray-100 text-gray-800 hover:bg-gray-200 dark:bg-gray-800 dark:text-gray-200 dark:hover:bg-gray-700"
-                    }`}
-                  >
-                    {capitalizeFirstLetter(category)}
-                  </button>
-                ))}
-              </div>
-            </div>
-            */}
           </div>
         </div>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-purple-900 bg-transparent rounded-2xl">
+          <table className="min-w-full divide-y divide-purple-900 rounded-2xl bg-transparent">
             <thead className="bg-gradient-to-r from-purple-950/30 via-purple-950/10 to-purple-950/30">
               <tr>
                 <th
@@ -249,7 +219,8 @@ export function LLMTable() {
                     className="cursor-pointer px-4 py-3.5 text-center text-sm font-semibold text-purple-100"
                     onClick={() => handleSort(category)}
                   >
-                    {category} {sortConfig.key === category &&
+                    {category}{" "}
+                    {sortConfig.key === category &&
                       (sortConfig.direction === "asc" ? "↑" : "↓")}
                   </th>
                 ))}
@@ -260,7 +231,7 @@ export function LLMTable() {
                 <tr
                   key={project.id}
                   onClick={() => setSelectedProjectId(project.id)}
-                  className="cursor-pointer hover:bg-purple-900/30 transition-colors"
+                  className="cursor-pointer transition-colors hover:bg-purple-900/30"
                 >
                   <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-purple-100">
                     {project.name}
@@ -286,10 +257,10 @@ export function LLMTable() {
                     >
                       <Badge
                         color={getBadgeColor(
-                          project.scores.categories[category].score,
+                          project.scores.categories[category]?.score,
                         )}
                       >
-                        {project.scores.categories[category].score.toFixed(1)}
+                        {project.scores.categories[category]?.score?.toFixed(1)}
                       </Badge>
                     </td>
                   ))}

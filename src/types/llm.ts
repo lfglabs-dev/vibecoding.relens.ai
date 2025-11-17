@@ -32,7 +32,12 @@ export interface SurveyRun {
   id: string
   batch_id: string
   result: {
-    criteria_evaluations: CriteriaEvaluation[]
+    // Flexible result payload for the current leaderboard pipelines
+    review?: string
+    understanding?: number
+    present?: boolean
+    results?: unknown
+    [key: string]: unknown
   }
   metadata: RunMetadata
 }
@@ -40,7 +45,7 @@ export interface SurveyRun {
 export interface ProjectMetadata {
   industry: string
   index_category: string
-  included_in_index: boolean
+  included_in_index?: boolean
 }
 
 export interface DatabaseProject {
@@ -50,20 +55,15 @@ export interface DatabaseProject {
   project_metadata: ProjectMetadata
 }
 
-export interface CriteriaEvaluation {
-  grade: number
-  review: string
-  criteria: string
-  mistakes?: string[]
-}
-
 export interface ModelInfo {
   name: string
   features?: string[]
 }
 
 export interface RunMetadata {
-  quantifier: any
+  quantifier: {
+    [key: string]: unknown
+  }
   model_prompt_id: string
   response_delay: number
   querier: {
@@ -107,6 +107,9 @@ export interface TransformedProject {
   name: string
   description: string
   category: string
+  // True if the project has at least one evaluated run (any numeric signal),
+  // false if there is no scoring data at all.
+  hasEvaluations: boolean
   criteriaDefinitions: CriteriaDefinition[]
   scores: {
     overall: number

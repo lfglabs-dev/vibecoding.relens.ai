@@ -9,10 +9,8 @@ const supabase = createClient(
 
 export async function GET() {
   try {
-    const { data: projects, error } = await supabase
-      .from("projects")
-      .select(
-        `
+    const { data: projects, error } = await supabase.from("projects").select(
+      `
         id,
         name,
         description,
@@ -35,42 +33,42 @@ export async function GET() {
           )
         )
       `,
-      )
-      .eq("project_metadata->included_in_index", true)
+    )
 
     if (error) throw error
     if (!projects) {
       return NextResponse.json({ error: "No projects found" }, { status: 404 })
     }
-    console.log(projects)
 
     // Parse any stringified JSON in the nested objects
-    const expandedProjects = projects.map((project: Partial<Project>) => ({
-      ...project,
-      surveys: (project.surveys || []).map((survey: Partial<Survey>) => ({
-        ...survey,
-        pipeline_metadata:
-          typeof survey.pipeline_metadata === "string"
-            ? JSON.parse(survey.pipeline_metadata)
-            : survey.pipeline_metadata,
-        survey_batches: (survey.survey_batches || []).map(
-          (batch: Partial<SurveyBatch>) => ({
-            ...batch,
-            runs: (batch.runs || []).map((run: Partial<SurveyRun>) => ({
-              ...run,
-              result:
-                typeof run.result === "string"
-                  ? JSON.parse(run.result)
-                  : run.result,
-              metadata:
-                typeof run.metadata === "string"
-                  ? JSON.parse(run.metadata)
-                  : run.metadata,
-            })),
-          }),
-        ),
-      })),
-    }))
+    const expandedProjects = (projects as Partial<Project>[]).map(
+      (project: Partial<Project>) => ({
+        ...project,
+        surveys: (project.surveys || []).map((survey: Partial<Survey>) => ({
+          ...survey,
+          pipeline_metadata:
+            typeof survey.pipeline_metadata === "string"
+              ? JSON.parse(survey.pipeline_metadata)
+              : survey.pipeline_metadata,
+          survey_batches: (survey.survey_batches || []).map(
+            (batch: Partial<SurveyBatch>) => ({
+              ...batch,
+              runs: (batch.runs || []).map((run: Partial<SurveyRun>) => ({
+                ...run,
+                result:
+                  typeof run.result === "string"
+                    ? JSON.parse(run.result)
+                    : run.result,
+                metadata:
+                  typeof run.metadata === "string"
+                    ? JSON.parse(run.metadata)
+                    : run.metadata,
+              })),
+            }),
+          ),
+        })),
+      }),
+    )
 
     return NextResponse.json(expandedProjects, {
       headers: {

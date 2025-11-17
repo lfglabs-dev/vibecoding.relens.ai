@@ -105,42 +105,10 @@ export enum MenuType {
   Confirmation = "confirmation",
 }
 
-export const calculateCategoryScore = (runs: any[]) => {
-  if (!runs || runs.length === 0) return 0
-
-  let totalGrade = 0
-  let totalEvaluations = 0
-
-  runs.forEach((run) => {
-    if (run.result?.criteria_evaluations) {
-      run.result.criteria_evaluations.forEach((evaluation: any) => {
-        if (typeof evaluation.grade === "number") {
-          totalGrade += evaluation.grade
-          totalEvaluations++
-        }
-      })
-    }
-  })
-
-  return totalEvaluations > 0 ? totalGrade / totalEvaluations : 0
-}
-
 export const calculateOverallScore = (categoryScores: number[]) => {
   const validScores = categoryScores.filter((score) => score > 0)
   if (validScores.length === 0) return 0
   return validScores.reduce((a, b) => a + b, 0) / validScores.length
-}
-
-export const getCategoryScores = (surveys: any[]) => {
-  return surveys.reduce((acc, survey) => {
-    const runs = (survey.survey_batches || []).flatMap(
-      (batch: any) => batch.survey_runs || [],
-    )
-    return {
-      ...acc,
-      [survey.name]: calculateCategoryScore(runs),
-    }
-  }, {})
 }
 
 // Model family patterns
@@ -166,7 +134,8 @@ export const getReadableModelName = (modelName: string): string => {
   return modelName
 }
 
-export const capitalizeFirstLetter = (str: string) => {
+export const capitalizeFirstLetter = (str?: string | null): string => {
+  if (!str) return ""
   return str.charAt(0).toUpperCase() + str.slice(1)
 }
 
