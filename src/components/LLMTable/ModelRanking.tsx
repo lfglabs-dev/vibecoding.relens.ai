@@ -12,10 +12,9 @@ const MODEL_IMAGES = {
 
 interface ModelRankingProps {
   models: ModelScore[]
-  category: string
 }
 
-export function ModelRanking({ models, category }: ModelRankingProps) {
+export function ModelRanking({ models }: ModelRankingProps) {
   const [hoveredModel, setHoveredModel] = useState<ModelScore | null>(null)
 
   // Sort all models by score

@@ -240,10 +240,7 @@ export function LLMTable() {
                     {capitalizeFirstLetter(project.category)}
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-sm">
-                    <ModelRanking
-                      models={getFilteredModelScores(project)}
-                      category={project.category}
-                    />
+                    <ModelRanking models={getFilteredModelScores(project)} />
                   </td>
                   <td className="whitespace-nowrap px-4 py-4 text-center text-sm">
                     <Badge color={getBadgeColor(project.scores.overall)}>
