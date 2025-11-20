@@ -38,21 +38,45 @@
                 "batch_id": "batch-1",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.2, "review": "Excellent component architecture", "criteria": "1. Component Architecture" },
-                    { "grade": 8.8, "review": "Very readable code", "criteria": "2. Code Readability" },
-                    { "grade": 9.0, "review": "Follows React best practices", "criteria": "3. Best Practices" },
-                    { "grade": 8.5, "review": "Good performance considerations", "criteria": "4. Performance Optimization" }
+                    { "grade": 8.0, "review": "Good component architecture", "criteria": "1. Component Architecture" },
+                    { "grade": 7.9, "review": "Clear and readable code", "criteria": "2. Code Readability" },
+                    { "grade": 8.1, "review": "Follows React best practices", "criteria": "3. Best Practices" },
+                    { "grade": 8.0, "review": "Decent performance considerations", "criteria": "4. Performance Optimization" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1200,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
                       "features": ["code-completion", "explanation"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-1a",
+                "batch_id": "batch-1",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.1, "review": "Outstanding component design", "criteria": "1. Component Architecture" },
+                    { "grade": 8.9, "review": "Exceptionally clean code", "criteria": "2. Code Readability" },
+                    { "grade": 9.0, "review": "Excellent adherence to patterns", "criteria": "3. Best Practices" },
+                    { "grade": 9.0, "review": "Superior optimization", "criteria": "4. Performance Optimization" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1150,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "GPT-5.1",
+                      "features": ["code-completion", "explanation", "thinking-mode"]
                     }
                   }
                 }
@@ -62,21 +86,45 @@
                 "batch_id": "batch-1",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.5, "review": "Outstanding component design", "criteria": "1. Component Architecture" },
-                    { "grade": 9.3, "review": "Exceptionally clear code", "criteria": "2. Code Readability" },
-                    { "grade": 9.2, "review": "Perfect adherence to patterns", "criteria": "3. Best Practices" },
-                    { "grade": 9.0, "review": "Excellent optimization", "criteria": "4. Performance Optimization" }
+                    { "grade": 7.4, "review": "Decent component structure", "criteria": "1. Component Architecture" },
+                    { "grade": 7.6, "review": "Readable code", "criteria": "2. Code Readability" },
+                    { "grade": 7.5, "review": "Generally follows best practices", "criteria": "3. Best Practices" },
+                    { "grade": 7.5, "review": "Adequate performance focus", "criteria": "4. Performance Optimization" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1500,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
                       "features": ["code-completion", "explanation"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-2a",
+                "batch_id": "batch-1",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.0, "review": "Excellent component architecture", "criteria": "1. Component Architecture" },
+                    { "grade": 9.1, "review": "Very clear code structure", "criteria": "2. Code Readability" },
+                    { "grade": 9.0, "review": "Perfect adherence to patterns", "criteria": "3. Best Practices" },
+                    { "grade": 8.9, "review": "Excellent optimization", "criteria": "4. Performance Optimization" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1650,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
+                      "features": ["code-completion", "explanation", "agentic"]
                     }
                   }
                 }
@@ -86,10 +134,10 @@
                 "batch_id": "batch-1",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.7, "review": "Good component structure", "criteria": "1. Component Architecture" },
-                    { "grade": 8.5, "review": "Clean and readable", "criteria": "2. Code Readability" },
-                    { "grade": 8.3, "review": "Generally follows best practices", "criteria": "3. Best Practices" },
-                    { "grade": 8.0, "review": "Decent performance focus", "criteria": "4. Performance Optimization" }
+                    { "grade": 9.1, "review": "Excellent component structure", "criteria": "1. Component Architecture" },
+                    { "grade": 8.9, "review": "Clean and intuitive", "criteria": "2. Code Readability" },
+                    { "grade": 9.0, "review": "Strong best practices", "criteria": "3. Best Practices" },
+                    { "grade": 9.0, "review": "Great performance focus", "criteria": "4. Performance Optimization" }
                   ]
                 },
                 "metadata": {
@@ -99,8 +147,8 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
-                      "features": ["code-completion"]
+                      "name": "Gemini-2.5-Pro",
+                      "features": ["code-completion", "deep-think"]
                     }
                   }
                 }
@@ -138,20 +186,44 @@
                 "batch_id": "batch-2",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.0, "review": "Excellent type definitions", "criteria": "1. Type Safety" },
-                    { "grade": 9.5, "review": "Perfect syntax", "criteria": "2. Syntax Correctness" },
-                    { "grade": 9.2, "review": "All imports correct", "criteria": "3. Import Resolution" },
-                    { "grade": 9.3, "review": "Builds successfully", "criteria": "4. Build Success" }
+                    { "grade": 7.5, "review": "Good type definitions", "criteria": "1. Type Safety" },
+                    { "grade": 7.6, "review": "Valid syntax", "criteria": "2. Syntax Correctness" },
+                    { "grade": 7.4, "review": "Imports mostly correct", "criteria": "3. Import Resolution" },
+                    { "grade": 7.5, "review": "Builds with minor fixes", "criteria": "4. Build Success" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1100,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-4a",
+                "batch_id": "batch-2",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.1, "review": "Excellent type definitions", "criteria": "1. Type Safety" },
+                    { "grade": 9.0, "review": "Perfect syntax", "criteria": "2. Syntax Correctness" },
+                    { "grade": 8.9, "review": "All imports correct", "criteria": "3. Import Resolution" },
+                    { "grade": 9.0, "review": "Builds successfully", "criteria": "4. Build Success" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1050,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -162,20 +234,44 @@
                 "batch_id": "batch-2",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.3, "review": "Outstanding type safety", "criteria": "1. Type Safety" },
-                    { "grade": 9.6, "review": "Flawless syntax", "criteria": "2. Syntax Correctness" },
-                    { "grade": 9.4, "review": "Perfect imports", "criteria": "3. Import Resolution" },
-                    { "grade": 9.5, "review": "Compiles perfectly", "criteria": "4. Build Success" }
+                    { "grade": 6.9, "review": "Basic type safety", "criteria": "1. Type Safety" },
+                    { "grade": 7.1, "review": "Generally valid syntax", "criteria": "2. Syntax Correctness" },
+                    { "grade": 7.0, "review": "Adequate imports", "criteria": "3. Import Resolution" },
+                    { "grade": 7.0, "review": "Compiles with tweaks", "criteria": "4. Build Success" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1400,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-5a",
+                "batch_id": "batch-2",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.0, "review": "Outstanding type safety", "criteria": "1. Type Safety" },
+                    { "grade": 9.1, "review": "Flawless syntax", "criteria": "2. Syntax Correctness" },
+                    { "grade": 9.0, "review": "Perfect imports", "criteria": "3. Import Resolution" },
+                    { "grade": 8.9, "review": "Compiles perfectly", "criteria": "4. Build Success" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1550,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -186,10 +282,10 @@
                 "batch_id": "batch-2",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.5, "review": "Good type usage", "criteria": "1. Type Safety" },
-                    { "grade": 8.8, "review": "Valid syntax", "criteria": "2. Syntax Correctness" },
-                    { "grade": 8.3, "review": "Mostly correct imports", "criteria": "3. Import Resolution" },
-                    { "grade": 8.6, "review": "Builds with minor warnings", "criteria": "4. Build Success" }
+                    { "grade": 8.6, "review": "Good type usage", "criteria": "1. Type Safety" },
+                    { "grade": 8.5, "review": "Valid syntax", "criteria": "2. Syntax Correctness" },
+                    { "grade": 8.4, "review": "Mostly correct imports", "criteria": "3. Import Resolution" },
+                    { "grade": 8.5, "review": "Builds well", "criteria": "4. Build Success" }
                   ]
                 },
                 "metadata": {
@@ -199,7 +295,7 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -238,21 +334,45 @@
                 "batch_id": "batch-3",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.1, "review": "Complete solution", "criteria": "1. Solution Completeness" },
-                    { "grade": 8.7, "review": "Handles most edge cases", "criteria": "2. Edge Case Handling" },
-                    { "grade": 8.9, "review": "Good UX focus", "criteria": "3. User Experience" },
-                    { "grade": 9.0, "review": "Excellent debugging help", "criteria": "4. Debugging Assistance" }
+                    { "grade": 8.1, "review": "Complete solution", "criteria": "1. Solution Completeness" },
+                    { "grade": 7.9, "review": "Handles most edge cases", "criteria": "2. Edge Case Handling" },
+                    { "grade": 8.0, "review": "Good UX focus", "criteria": "3. User Experience" },
+                    { "grade": 8.0, "review": "Good debugging help", "criteria": "4. Debugging Assistance" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1300,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
                       "features": ["problem-solving"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-7a",
+                "batch_id": "batch-3",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.6, "review": "Comprehensive solution with thinking mode", "criteria": "1. Solution Completeness" },
+                    { "grade": 8.4, "review": "Excellent edge case coverage", "criteria": "2. Edge Case Handling" },
+                    { "grade": 8.5, "review": "Strong UX considerations", "criteria": "3. User Experience" },
+                    { "grade": 8.5, "review": "Superior debugging guidance", "criteria": "4. Debugging Assistance" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1250,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "GPT-5.1",
+                      "features": ["problem-solving", "thinking-mode"]
                     }
                   }
                 }
@@ -262,21 +382,45 @@
                 "batch_id": "batch-3",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.4, "review": "Comprehensive solution", "criteria": "1. Solution Completeness" },
-                    { "grade": 9.2, "review": "Excellent edge case coverage", "criteria": "2. Edge Case Handling" },
-                    { "grade": 9.3, "review": "Outstanding UX considerations", "criteria": "3. User Experience" },
-                    { "grade": 9.5, "review": "Superior debugging guidance", "criteria": "4. Debugging Assistance" }
+                    { "grade": 7.1, "review": "Adequate solution", "criteria": "1. Solution Completeness" },
+                    { "grade": 6.9, "review": "Basic edge case handling", "criteria": "2. Edge Case Handling" },
+                    { "grade": 7.0, "review": "Decent UX focus", "criteria": "3. User Experience" },
+                    { "grade": 7.0, "review": "Helpful debugging", "criteria": "4. Debugging Assistance" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1600,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
                       "features": ["problem-solving"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-8a",
+                "batch_id": "batch-3",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.6, "review": "Comprehensive agentic solution", "criteria": "1. Solution Completeness" },
+                    { "grade": 8.4, "review": "Excellent edge case coverage", "criteria": "2. Edge Case Handling" },
+                    { "grade": 8.5, "review": "Outstanding UX considerations", "criteria": "3. User Experience" },
+                    { "grade": 8.5, "review": "Superior debugging with context", "criteria": "4. Debugging Assistance" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1750,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
+                      "features": ["problem-solving", "agentic"]
                     }
                   }
                 }
@@ -286,10 +430,10 @@
                 "batch_id": "batch-3",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.6, "review": "Solid solution", "criteria": "1. Solution Completeness" },
-                    { "grade": 8.2, "review": "Basic edge case handling", "criteria": "2. Edge Case Handling" },
-                    { "grade": 8.4, "review": "Decent UX focus", "criteria": "3. User Experience" },
-                    { "grade": 8.3, "review": "Good debugging support", "criteria": "4. Debugging Assistance" }
+                    { "grade": 9.6, "review": "Exceptionally complete solution with foresight", "criteria": "1. Solution Completeness" },
+                    { "grade": 9.4, "review": "Proactive edge case handling", "criteria": "2. Edge Case Handling" },
+                    { "grade": 9.5, "review": "Outstanding UX intuition", "criteria": "3. User Experience" },
+                    { "grade": 9.5, "review": "Exceptional debugging support", "criteria": "4. Debugging Assistance" }
                   ]
                 },
                 "metadata": {
@@ -299,8 +443,8 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
-                      "features": ["problem-solving"]
+                      "name": "Gemini-2.5-Pro",
+                      "features": ["problem-solving", "deep-think"]
                     }
                   }
                 }
@@ -338,20 +482,44 @@
                 "batch_id": "batch-4",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.8, "review": "Good XSS protection", "criteria": "1. XSS Prevention" },
-                    { "grade": 9.0, "review": "Secure auth implementation", "criteria": "2. Authentication Handling" },
-                    { "grade": 8.7, "review": "Proper validation", "criteria": "3. Data Validation" },
-                    { "grade": 8.5, "review": "Safe dependencies", "criteria": "4. Dependency Security" }
+                    { "grade": 7.1, "review": "Basic XSS protection", "criteria": "1. XSS Prevention" },
+                    { "grade": 6.9, "review": "Adequate auth implementation", "criteria": "2. Authentication Handling" },
+                    { "grade": 7.0, "review": "Standard validation", "criteria": "3. Data Validation" },
+                    { "grade": 7.0, "review": "Acceptable dependencies", "criteria": "4. Dependency Security" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1250,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["security"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-10a",
+                "batch_id": "batch-4",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.1, "review": "Good XSS protection with warnings", "criteria": "1. XSS Prevention" },
+                    { "grade": 7.9, "review": "Secure auth implementation", "criteria": "2. Authentication Handling" },
+                    { "grade": 8.0, "review": "Proper validation with guidance", "criteria": "3. Data Validation" },
+                    { "grade": 8.0, "review": "Safe dependencies with cautions", "criteria": "4. Dependency Security" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1200,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["security"]
                     }
                   }
@@ -362,21 +530,45 @@
                 "batch_id": "batch-4",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.2, "review": "Excellent XSS prevention", "criteria": "1. XSS Prevention" },
-                    { "grade": 9.4, "review": "Outstanding auth security", "criteria": "2. Authentication Handling" },
+                    { "grade": 9.0, "review": "Excellent XSS prevention", "criteria": "1. XSS Prevention" },
+                    { "grade": 9.1, "review": "Outstanding auth security with warnings", "criteria": "2. Authentication Handling" },
                     { "grade": 9.0, "review": "Comprehensive validation", "criteria": "3. Data Validation" },
-                    { "grade": 9.1, "review": "Very secure dependencies", "criteria": "4. Dependency Security" }
+                    { "grade": 8.9, "review": "Very secure dependencies", "criteria": "4. Dependency Security" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1550,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
                       "features": ["security"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-11a",
+                "batch_id": "batch-4",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.6, "review": "Exceptional XSS prevention with scanning", "criteria": "1. XSS Prevention" },
+                    { "grade": 9.5, "review": "Outstanding auth security with auditing", "criteria": "2. Authentication Handling" },
+                    { "grade": 9.5, "review": "Comprehensive validation with analysis", "criteria": "3. Data Validation" },
+                    { "grade": 9.4, "review": "Very secure with vulnerability scanning", "criteria": "4. Dependency Security" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1700,
+                  "querier": {
+                    "language": "typescript",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
+                      "features": ["security", "vulnerability-scanning"]
                     }
                   }
                 }
@@ -386,9 +578,9 @@
                 "batch_id": "batch-4",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.3, "review": "Basic XSS protection", "criteria": "1. XSS Prevention" },
-                    { "grade": 8.5, "review": "Decent auth security", "criteria": "2. Authentication Handling" },
-                    { "grade": 8.2, "review": "Adequate validation", "criteria": "3. Data Validation" },
+                    { "grade": 8.1, "review": "Good XSS protection", "criteria": "1. XSS Prevention" },
+                    { "grade": 7.9, "review": "Decent auth security", "criteria": "2. Authentication Handling" },
+                    { "grade": 8.0, "review": "Adequate validation", "criteria": "3. Data Validation" },
                     { "grade": 8.0, "review": "Acceptable dependency usage", "criteria": "4. Dependency Security" }
                   ]
                 },
@@ -399,7 +591,7 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["security"]
                     }
                   }
@@ -450,20 +642,44 @@
                 "batch_id": "batch-5",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.3, "review": "Excellent API design", "criteria": "1. API Design" },
-                    { "grade": 9.0, "review": "Well-organized code", "criteria": "2. Code Organization" },
-                    { "grade": 8.9, "review": "Good error handling", "criteria": "3. Error Handling" },
-                    { "grade": 8.7, "review": "Clear documentation", "criteria": "4. Documentation" }
+                    { "grade": 8.1, "review": "Good API design", "criteria": "1. API Design" },
+                    { "grade": 7.9, "review": "Well-organized code", "criteria": "2. Code Organization" },
+                    { "grade": 8.0, "review": "Decent error handling", "criteria": "3. Error Handling" },
+                    { "grade": 8.0, "review": "Clear documentation", "criteria": "4. Documentation" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1400,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-13a",
+                "batch_id": "batch-5",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.1, "review": "Excellent API design", "criteria": "1. API Design" },
+                    { "grade": 8.9, "review": "Very well-organized code", "criteria": "2. Code Organization" },
+                    { "grade": 9.0, "review": "Strong error handling", "criteria": "3. Error Handling" },
+                    { "grade": 9.0, "review": "Comprehensive documentation", "criteria": "4. Documentation" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1350,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -474,20 +690,44 @@
                 "batch_id": "batch-5",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.0, "review": "Strong API principles", "criteria": "1. API Design" },
-                    { "grade": 9.2, "review": "Excellent organization", "criteria": "2. Code Organization" },
-                    { "grade": 9.3, "review": "Comprehensive error handling", "criteria": "3. Error Handling" },
-                    { "grade": 9.1, "review": "Thorough documentation", "criteria": "4. Documentation" }
+                    { "grade": 7.6, "review": "Adequate API principles", "criteria": "1. API Design" },
+                    { "grade": 7.4, "review": "Decent organization", "criteria": "2. Code Organization" },
+                    { "grade": 7.5, "review": "Basic error handling", "criteria": "3. Error Handling" },
+                    { "grade": 7.5, "review": "Standard documentation", "criteria": "4. Documentation" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1700,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-14a",
+                "batch_id": "batch-5",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.0, "review": "Strong API principles", "criteria": "1. API Design" },
+                    { "grade": 9.1, "review": "Excellent organization", "criteria": "2. Code Organization" },
+                    { "grade": 9.0, "review": "Comprehensive error handling", "criteria": "3. Error Handling" },
+                    { "grade": 8.9, "review": "Thorough documentation", "criteria": "4. Documentation" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1850,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -498,10 +738,10 @@
                 "batch_id": "batch-5",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.5, "review": "Good API structure", "criteria": "1. API Design" },
-                    { "grade": 8.6, "review": "Decent organization", "criteria": "2. Code Organization" },
-                    { "grade": 8.4, "review": "Adequate error handling", "criteria": "3. Error Handling" },
-                    { "grade": 8.2, "review": "Basic documentation", "criteria": "4. Documentation" }
+                    { "grade": 9.1, "review": "Excellent API structure", "criteria": "1. API Design" },
+                    { "grade": 8.9, "review": "Great organization", "criteria": "2. Code Organization" },
+                    { "grade": 9.0, "review": "Strong error handling", "criteria": "3. Error Handling" },
+                    { "grade": 9.0, "review": "Clear documentation", "criteria": "4. Documentation" }
                   ]
                 },
                 "metadata": {
@@ -511,7 +751,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -550,20 +790,44 @@
                 "batch_id": "batch-6",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.4, "review": "Perfect syntax", "criteria": "1. Syntax Correctness" },
-                    { "grade": 9.2, "review": "All dependencies correct", "criteria": "2. Dependency Management" },
-                    { "grade": 9.0, "review": "Proper configuration", "criteria": "3. Configuration" },
-                    { "grade": 9.3, "review": "Runs successfully", "criteria": "4. Runtime Success" }
+                    { "grade": 7.6, "review": "Good syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 7.4, "review": "Dependencies mostly correct", "criteria": "2. Dependency Management" },
+                    { "grade": 7.5, "review": "Adequate configuration", "criteria": "3. Configuration" },
+                    { "grade": 7.5, "review": "Runs with minor fixes", "criteria": "4. Runtime Success" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1350,
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-16a",
+                "batch_id": "batch-6",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.1, "review": "Perfect syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 8.9, "review": "All dependencies correct", "criteria": "2. Dependency Management" },
+                    { "grade": 9.0, "review": "Proper configuration", "criteria": "3. Configuration" },
+                    { "grade": 9.0, "review": "Runs successfully", "criteria": "4. Runtime Success" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1300,
+                  "querier": {
+                    "language": "javascript",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -574,20 +838,44 @@
                 "batch_id": "batch-6",
                 "result": {
                   "criteria_evaluations": [
+                    { "grade": 7.1, "review": "Adequate syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 6.9, "review": "Basic dependency management", "criteria": "2. Dependency Management" },
+                    { "grade": 7.0, "review": "Standard configuration", "criteria": "3. Configuration" },
+                    { "grade": 7.0, "review": "Executes with tweaking", "criteria": "4. Runtime Success" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
+                  "response_delay": 1650,
+                  "querier": {
+                    "language": "javascript",
+                    "model_used": {
+                      "name": "Claude-Sonnet-2.5",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-17a",
+                "batch_id": "batch-6",
+                "result": {
+                  "criteria_evaluations": [
                     { "grade": 8.9, "review": "Clean syntax", "criteria": "1. Syntax Correctness" },
                     { "grade": 9.1, "review": "Well-managed dependencies", "criteria": "2. Dependency Management" },
-                    { "grade": 9.2, "review": "Excellent configuration", "criteria": "3. Configuration" },
+                    { "grade": 9.0, "review": "Excellent configuration", "criteria": "3. Configuration" },
                     { "grade": 9.0, "review": "Executes perfectly", "criteria": "4. Runtime Success" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
-                  "response_delay": 1650,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1800,
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Opus-4.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -601,7 +889,7 @@
                     { "grade": 8.6, "review": "Good syntax", "criteria": "1. Syntax Correctness" },
                     { "grade": 8.4, "review": "Mostly correct dependencies", "criteria": "2. Dependency Management" },
                     { "grade": 8.5, "review": "Decent configuration", "criteria": "3. Configuration" },
-                    { "grade": 8.3, "review": "Runs with minor issues", "criteria": "4. Runtime Success" }
+                    { "grade": 8.5, "review": "Runs well", "criteria": "4. Runtime Success" }
                   ]
                 },
                 "metadata": {
@@ -611,7 +899,7 @@
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -650,21 +938,45 @@
                 "batch_id": "batch-7",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.9, "review": "Good scalability focus", "criteria": "1. Scalability" },
-                    { "grade": 9.1, "review": "Excellent performance tips", "criteria": "2. Performance" },
-                    { "grade": 8.8, "review": "Reliable solutions", "criteria": "3. Reliability" },
-                    { "grade": 9.0, "review": "Great troubleshooting help", "criteria": "4. Troubleshooting" }
+                    { "grade": 8.1, "review": "Good scalability focus", "criteria": "1. Scalability" },
+                    { "grade": 7.9, "review": "Decent performance tips", "criteria": "2. Performance" },
+                    { "grade": 8.0, "review": "Reliable solutions", "criteria": "3. Reliability" },
+                    { "grade": 8.0, "review": "Good troubleshooting help", "criteria": "4. Troubleshooting" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1450,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
                       "features": ["problem-solving"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-19a",
+                "batch_id": "batch-7",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.6, "review": "Excellent scalability focus", "criteria": "1. Scalability" },
+                    { "grade": 8.4, "review": "Strong performance tips", "criteria": "2. Performance" },
+                    { "grade": 8.5, "review": "Very reliable solutions", "criteria": "3. Reliability" },
+                    { "grade": 8.5, "review": "Great troubleshooting with reasoning", "criteria": "4. Troubleshooting" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1400,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "GPT-5.1",
+                      "features": ["problem-solving", "thinking-mode"]
                     }
                   }
                 }
@@ -674,21 +986,45 @@
                 "batch_id": "batch-7",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.3, "review": "Excellent scalability considerations", "criteria": "1. Scalability" },
-                    { "grade": 9.0, "review": "Strong performance optimization", "criteria": "2. Performance" },
-                    { "grade": 9.4, "review": "Very reliable approaches", "criteria": "3. Reliability" },
-                    { "grade": 9.2, "review": "Superior troubleshooting", "criteria": "4. Troubleshooting" }
+                    { "grade": 7.1, "review": "Basic scalability", "criteria": "1. Scalability" },
+                    { "grade": 6.9, "review": "Adequate performance focus", "criteria": "2. Performance" },
+                    { "grade": 7.0, "review": "Decent reliability", "criteria": "3. Reliability" },
+                    { "grade": 7.0, "review": "Adequate troubleshooting", "criteria": "4. Troubleshooting" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1750,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
                       "features": ["problem-solving"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-20a",
+                "batch_id": "batch-7",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.6, "review": "Excellent scalability considerations", "criteria": "1. Scalability" },
+                    { "grade": 8.4, "review": "Strong performance optimization", "criteria": "2. Performance" },
+                    { "grade": 8.5, "review": "Very reliable approaches", "criteria": "3. Reliability" },
+                    { "grade": 8.5, "review": "Superior troubleshooting", "criteria": "4. Troubleshooting" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1900,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
+                      "features": ["problem-solving", "agentic"]
                     }
                   }
                 }
@@ -698,10 +1034,10 @@
                 "batch_id": "batch-7",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.4, "review": "Basic scalability", "criteria": "1. Scalability" },
-                    { "grade": 8.6, "review": "Good performance focus", "criteria": "2. Performance" },
-                    { "grade": 8.3, "review": "Decent reliability", "criteria": "3. Reliability" },
-                    { "grade": 8.5, "review": "Adequate troubleshooting", "criteria": "4. Troubleshooting" }
+                    { "grade": 9.6, "review": "Exceptional scalability with foresight", "criteria": "1. Scalability" },
+                    { "grade": 9.4, "review": "Outstanding performance optimization", "criteria": "2. Performance" },
+                    { "grade": 9.5, "review": "Highly reliable approaches", "criteria": "3. Reliability" },
+                    { "grade": 9.5, "review": "Excellent troubleshooting", "criteria": "4. Troubleshooting" }
                   ]
                 },
                 "metadata": {
@@ -711,8 +1047,8 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
-                      "features": ["problem-solving"]
+                      "name": "Gemini-2.5-Pro",
+                      "features": ["problem-solving", "deep-think"]
                     }
                   }
                 }
@@ -750,20 +1086,44 @@
                 "batch_id": "batch-8",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.2, "review": "Strong authentication", "criteria": "1. Authentication" },
-                    { "grade": 9.0, "review": "Good authorization controls", "criteria": "2. Authorization" },
-                    { "grade": 8.9, "review": "Proper data protection", "criteria": "3. Data Protection" },
-                    { "grade": 9.1, "review": "Prevents common vulnerabilities", "criteria": "4. Vulnerability Prevention" }
+                    { "grade": 7.1, "review": "Basic authentication", "criteria": "1. Authentication" },
+                    { "grade": 6.9, "review": "Adequate authorization controls", "criteria": "2. Authorization" },
+                    { "grade": 7.0, "review": "Standard data protection", "criteria": "3. Data Protection" },
+                    { "grade": 7.0, "review": "Handles some vulnerabilities", "criteria": "4. Vulnerability Prevention" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1500,
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["security"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-22a",
+                "batch_id": "batch-8",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.1, "review": "Strong authentication with warnings", "criteria": "1. Authentication" },
+                    { "grade": 7.9, "review": "Good authorization controls", "criteria": "2. Authorization" },
+                    { "grade": 8.0, "review": "Proper data protection", "criteria": "3. Data Protection" },
+                    { "grade": 8.0, "review": "Prevents common vulnerabilities", "criteria": "4. Vulnerability Prevention" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1450,
+                  "querier": {
+                    "language": "javascript",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["security"]
                     }
                   }
@@ -774,21 +1134,45 @@
                 "batch_id": "batch-8",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.5, "review": "Excellent authentication", "criteria": "1. Authentication" },
-                    { "grade": 9.4, "review": "Outstanding authorization", "criteria": "2. Authorization" },
-                    { "grade": 9.3, "review": "Comprehensive data protection", "criteria": "3. Data Protection" },
+                    { "grade": 9.0, "review": "Excellent authentication with caution", "criteria": "1. Authentication" },
+                    { "grade": 9.1, "review": "Outstanding authorization", "criteria": "2. Authorization" },
+                    { "grade": 9.0, "review": "Comprehensive data protection", "criteria": "3. Data Protection" },
+                    { "grade": 8.9, "review": "Strong vulnerability prevention", "criteria": "4. Vulnerability Prevention" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
+                  "response_delay": 1800,
+                  "querier": {
+                    "language": "javascript",
+                    "model_used": {
+                      "name": "Claude-Sonnet-2.5",
+                      "features": ["security"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-23a",
+                "batch_id": "batch-8",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.6, "review": "Excellent authentication with auditing", "criteria": "1. Authentication" },
+                    { "grade": 9.5, "review": "Outstanding authorization with scanning", "criteria": "2. Authorization" },
+                    { "grade": 9.5, "review": "Comprehensive data protection", "criteria": "3. Data Protection" },
                     { "grade": 9.4, "review": "Excellent vulnerability prevention", "criteria": "4. Vulnerability Prevention" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
-                  "response_delay": 1800,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1950,
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
-                      "features": ["security"]
+                      "name": "Claude-Opus-4.1",
+                      "features": ["security", "vulnerability-scanning"]
                     }
                   }
                 }
@@ -798,10 +1182,10 @@
                 "batch_id": "batch-8",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.6, "review": "Decent authentication", "criteria": "1. Authentication" },
-                    { "grade": 8.5, "review": "Adequate authorization", "criteria": "2. Authorization" },
-                    { "grade": 8.4, "review": "Basic data protection", "criteria": "3. Data Protection" },
-                    { "grade": 8.3, "review": "Handles some vulnerabilities", "criteria": "4. Vulnerability Prevention" }
+                    { "grade": 8.1, "review": "Good authentication", "criteria": "1. Authentication" },
+                    { "grade": 7.9, "review": "Adequate authorization", "criteria": "2. Authorization" },
+                    { "grade": 8.0, "review": "Decent data protection", "criteria": "3. Data Protection" },
+                    { "grade": 8.0, "review": "Handles vulnerabilities", "criteria": "4. Vulnerability Prevention" }
                   ]
                 },
                 "metadata": {
@@ -811,7 +1195,7 @@
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["security"]
                     }
                   }
@@ -862,20 +1246,44 @@
                 "batch_id": "batch-9",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.8, "review": "Clear transformations", "criteria": "1. Code Clarity" },
-                    { "grade": 9.0, "review": "Efficient operations", "criteria": "2. Efficiency" },
-                    { "grade": 8.7, "review": "Good reproducibility", "criteria": "3. Reproducibility" },
-                    { "grade": 8.9, "review": "Follows best practices", "criteria": "4. Best Practices" }
+                    { "grade": 8.1, "review": "Clear transformations", "criteria": "1. Code Clarity" },
+                    { "grade": 7.9, "review": "Efficient operations", "criteria": "2. Efficiency" },
+                    { "grade": 8.0, "review": "Good reproducibility", "criteria": "3. Reproducibility" },
+                    { "grade": 8.0, "review": "Follows best practices", "criteria": "4. Best Practices" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1300,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["data-analysis"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-25a",
+                "batch_id": "batch-9",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.1, "review": "Very clear transformations", "criteria": "1. Code Clarity" },
+                    { "grade": 8.9, "review": "Highly efficient operations", "criteria": "2. Efficiency" },
+                    { "grade": 9.0, "review": "Excellent reproducibility", "criteria": "3. Reproducibility" },
+                    { "grade": 9.0, "review": "Strong best practices", "criteria": "4. Best Practices" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1250,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["data-analysis"]
                     }
                   }
@@ -886,20 +1294,44 @@
                 "batch_id": "batch-9",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.1, "review": "Very clear code", "criteria": "1. Code Clarity" },
-                    { "grade": 8.8, "review": "Well-optimized", "criteria": "2. Efficiency" },
-                    { "grade": 9.2, "review": "Excellent reproducibility", "criteria": "3. Reproducibility" },
-                    { "grade": 9.0, "review": "Strong adherence to conventions", "criteria": "4. Best Practices" }
+                    { "grade": 7.6, "review": "Readable code", "criteria": "1. Code Clarity" },
+                    { "grade": 7.4, "review": "Decent optimization", "criteria": "2. Efficiency" },
+                    { "grade": 7.5, "review": "Adequate reproducibility", "criteria": "3. Reproducibility" },
+                    { "grade": 7.5, "review": "Standard conventions", "criteria": "4. Best Practices" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1600,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
+                      "features": ["data-analysis"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-26a",
+                "batch_id": "batch-9",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.0, "review": "Very clear code", "criteria": "1. Code Clarity" },
+                    { "grade": 9.1, "review": "Well-optimized", "criteria": "2. Efficiency" },
+                    { "grade": 9.0, "review": "Excellent reproducibility", "criteria": "3. Reproducibility" },
+                    { "grade": 8.9, "review": "Strong adherence to conventions", "criteria": "4. Best Practices" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1750,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
                       "features": ["data-analysis"]
                     }
                   }
@@ -910,10 +1342,10 @@
                 "batch_id": "batch-9",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.9, "review": "Clear and understandable", "criteria": "1. Code Clarity" },
-                    { "grade": 9.2, "review": "Highly efficient", "criteria": "2. Efficiency" },
-                    { "grade": 8.6, "review": "Reproducible results", "criteria": "3. Reproducibility" },
-                    { "grade": 8.8, "review": "Good practices", "criteria": "4. Best Practices" }
+                    { "grade": 9.1, "review": "Clear and understandable", "criteria": "1. Code Clarity" },
+                    { "grade": 8.9, "review": "Highly efficient", "criteria": "2. Efficiency" },
+                    { "grade": 9.0, "review": "Reproducible results", "criteria": "3. Reproducibility" },
+                    { "grade": 9.0, "review": "Good practices", "criteria": "4. Best Practices" }
                   ]
                 },
                 "metadata": {
@@ -923,7 +1355,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["data-analysis"]
                     }
                   }
@@ -962,20 +1394,44 @@
                 "batch_id": "batch-10",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.3, "review": "Perfect syntax", "criteria": "1. Syntax Correctness" },
-                    { "grade": 9.1, "review": "Correct library usage", "criteria": "2. Library Usage" },
-                    { "grade": 9.0, "review": "Handles data types well", "criteria": "3. Data Compatibility" },
-                    { "grade": 9.2, "review": "Executes successfully", "criteria": "4. Execution Success" }
+                    { "grade": 7.6, "review": "Good syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 7.4, "review": "Adequate library usage", "criteria": "2. Library Usage" },
+                    { "grade": 7.5, "review": "Handles data types", "criteria": "3. Data Compatibility" },
+                    { "grade": 7.5, "review": "Executes with fixes", "criteria": "4. Execution Success" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1350,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-28a",
+                "batch_id": "batch-10",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.1, "review": "Perfect syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 8.9, "review": "Correct library usage", "criteria": "2. Library Usage" },
+                    { "grade": 9.0, "review": "Handles data types well", "criteria": "3. Data Compatibility" },
+                    { "grade": 9.0, "review": "Executes successfully", "criteria": "4. Execution Success" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1300,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -986,20 +1442,44 @@
                 "batch_id": "batch-10",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.0, "review": "Clean syntax", "criteria": "1. Syntax Correctness" },
-                    { "grade": 9.3, "review": "Excellent library usage", "criteria": "2. Library Usage" },
-                    { "grade": 9.2, "review": "Great data handling", "criteria": "3. Data Compatibility" },
-                    { "grade": 9.1, "review": "Runs perfectly", "criteria": "4. Execution Success" }
+                    { "grade": 7.1, "review": "Adequate syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 6.9, "review": "Basic library usage", "criteria": "2. Library Usage" },
+                    { "grade": 7.0, "review": "Standard data handling", "criteria": "3. Data Compatibility" },
+                    { "grade": 7.0, "review": "Runs with tweaking", "criteria": "4. Execution Success" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1650,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
+                      "features": ["code-completion"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-29a",
+                "batch_id": "batch-10",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.0, "review": "Clean syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 9.1, "review": "Excellent library usage", "criteria": "2. Library Usage" },
+                    { "grade": 9.0, "review": "Great data handling", "criteria": "3. Data Compatibility" },
+                    { "grade": 8.9, "review": "Runs perfectly", "criteria": "4. Execution Success" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1800,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
                       "features": ["code-completion"]
                     }
                   }
@@ -1010,10 +1490,10 @@
                 "batch_id": "batch-10",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.1, "review": "Valid syntax", "criteria": "1. Syntax Correctness" },
-                    { "grade": 8.9, "review": "Good library usage", "criteria": "2. Library Usage" },
-                    { "grade": 9.3, "review": "Excellent type handling", "criteria": "3. Data Compatibility" },
-                    { "grade": 9.0, "review": "Executes well", "criteria": "4. Execution Success" }
+                    { "grade": 8.6, "review": "Valid syntax", "criteria": "1. Syntax Correctness" },
+                    { "grade": 8.4, "review": "Good library usage", "criteria": "2. Library Usage" },
+                    { "grade": 8.5, "review": "Excellent type handling", "criteria": "3. Data Compatibility" },
+                    { "grade": 8.5, "review": "Executes well", "criteria": "4. Execution Success" }
                   ]
                 },
                 "metadata": {
@@ -1023,7 +1503,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -1062,21 +1542,45 @@
                 "batch_id": "batch-11",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.0, "review": "Insightful exploration", "criteria": "1. Data Exploration" },
-                    { "grade": 8.8, "review": "Good feature engineering", "criteria": "2. Feature Engineering" },
-                    { "grade": 9.1, "review": "Appropriate model choices", "criteria": "3. Model Selection" },
-                    { "grade": 8.9, "review": "Helpful debugging", "criteria": "4. Debugging" }
+                    { "grade": 8.1, "review": "Good exploration", "criteria": "1. Data Exploration" },
+                    { "grade": 7.9, "review": "Decent feature engineering", "criteria": "2. Feature Engineering" },
+                    { "grade": 8.0, "review": "Appropriate model choices", "criteria": "3. Model Selection" },
+                    { "grade": 8.0, "review": "Helpful debugging", "criteria": "4. Debugging" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1400,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
                       "features": ["problem-solving"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-31a",
+                "batch_id": "batch-11",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.6, "review": "Insightful exploration", "criteria": "1. Data Exploration" },
+                    { "grade": 8.4, "review": "Good feature engineering", "criteria": "2. Feature Engineering" },
+                    { "grade": 8.5, "review": "Strong model choices", "criteria": "3. Model Selection" },
+                    { "grade": 8.5, "review": "Excellent debugging", "criteria": "4. Debugging" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1350,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "GPT-5.1",
+                      "features": ["problem-solving", "thinking-mode"]
                     }
                   }
                 }
@@ -1086,21 +1590,45 @@
                 "batch_id": "batch-11",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.9, "review": "Thorough exploration", "criteria": "1. Data Exploration" },
-                    { "grade": 9.2, "review": "Creative features", "criteria": "2. Feature Engineering" },
-                    { "grade": 8.8, "review": "Good algorithm selection", "criteria": "3. Model Selection" },
-                    { "grade": 9.3, "review": "Excellent debugging help", "criteria": "4. Debugging" }
+                    { "grade": 7.1, "review": "Basic exploration", "criteria": "1. Data Exploration" },
+                    { "grade": 6.9, "review": "Adequate features", "criteria": "2. Feature Engineering" },
+                    { "grade": 7.0, "review": "Standard algorithm selection", "criteria": "3. Model Selection" },
+                    { "grade": 7.0, "review": "Decent debugging help", "criteria": "4. Debugging" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1700,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
                       "features": ["problem-solving"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-32a",
+                "batch_id": "batch-11",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.6, "review": "Thorough exploration", "criteria": "1. Data Exploration" },
+                    { "grade": 8.4, "review": "Creative features", "criteria": "2. Feature Engineering" },
+                    { "grade": 8.5, "review": "Good algorithm selection", "criteria": "3. Model Selection" },
+                    { "grade": 8.5, "review": "Excellent debugging help", "criteria": "4. Debugging" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1850,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
+                      "features": ["problem-solving", "agentic"]
                     }
                   }
                 }
@@ -1110,10 +1638,10 @@
                 "batch_id": "batch-11",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.2, "review": "Excellent exploration", "criteria": "1. Data Exploration" },
-                    { "grade": 9.0, "review": "Strong feature engineering", "criteria": "2. Feature Engineering" },
-                    { "grade": 9.3, "review": "Optimal model selection", "criteria": "3. Model Selection" },
-                    { "grade": 8.7, "review": "Good debugging support", "criteria": "4. Debugging" }
+                    { "grade": 9.6, "review": "Exceptional exploration with insights", "criteria": "1. Data Exploration" },
+                    { "grade": 9.4, "review": "Innovative feature engineering", "criteria": "2. Feature Engineering" },
+                    { "grade": 9.5, "review": "Optimal model selection", "criteria": "3. Model Selection" },
+                    { "grade": 9.5, "review": "Outstanding debugging support", "criteria": "4. Debugging" }
                   ]
                 },
                 "metadata": {
@@ -1123,8 +1651,8 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
-                      "features": ["problem-solving"]
+                      "name": "Gemini-2.5-Pro",
+                      "features": ["problem-solving", "deep-think"]
                     }
                   }
                 }
@@ -1162,20 +1690,44 @@
                 "batch_id": "batch-12",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.9, "review": "Good privacy protection", "criteria": "1. Data Privacy" },
-                    { "grade": 8.7, "review": "Secure access controls", "criteria": "2. Access Control" },
-                    { "grade": 8.8, "review": "Proper anonymization", "criteria": "3. Anonymization" },
-                    { "grade": 8.6, "review": "Aware of compliance", "criteria": "4. Compliance" }
+                    { "grade": 7.1, "review": "Basic privacy protection", "criteria": "1. Data Privacy" },
+                    { "grade": 6.9, "review": "Adequate access controls", "criteria": "2. Access Control" },
+                    { "grade": 7.0, "review": "Standard anonymization", "criteria": "3. Anonymization" },
+                    { "grade": 7.0, "review": "Aware of compliance", "criteria": "4. Compliance" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "gpt-4o-prompt",
+                  "model_prompt_id": "gpt-4-prompt",
                   "response_delay": 1450,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "GPT-4o",
+                      "name": "GPT-4",
+                      "features": ["security"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-34a",
+                "batch_id": "batch-12",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 8.1, "review": "Good privacy protection", "criteria": "1. Data Privacy" },
+                    { "grade": 7.9, "review": "Secure access controls", "criteria": "2. Access Control" },
+                    { "grade": 8.0, "review": "Proper anonymization", "criteria": "3. Anonymization" },
+                    { "grade": 8.0, "review": "Compliance aware", "criteria": "4. Compliance" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "gpt-5.1-prompt",
+                  "response_delay": 1400,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "GPT-5.1",
                       "features": ["security"]
                     }
                   }
@@ -1186,21 +1738,45 @@
                 "batch_id": "batch-12",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 9.2, "review": "Excellent privacy measures", "criteria": "1. Data Privacy" },
+                    { "grade": 9.0, "review": "Excellent privacy measures", "criteria": "1. Data Privacy" },
                     { "grade": 9.1, "review": "Strong access controls", "criteria": "2. Access Control" },
-                    { "grade": 9.3, "review": "Thorough anonymization", "criteria": "3. Anonymization" },
-                    { "grade": 9.0, "review": "Good compliance awareness", "criteria": "4. Compliance" }
+                    { "grade": 9.0, "review": "Thorough anonymization", "criteria": "3. Anonymization" },
+                    { "grade": 8.9, "review": "Good compliance awareness", "criteria": "4. Compliance" }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-prompt",
+                  "model_prompt_id": "claude-sonnet-2.5-prompt",
                   "response_delay": 1750,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-3.5-Sonnet",
+                      "name": "Claude-Sonnet-2.5",
                       "features": ["security"]
+                    }
+                  }
+                }
+              },
+              {
+                "id": "run-35a",
+                "batch_id": "batch-12",
+                "result": {
+                  "criteria_evaluations": [
+                    { "grade": 9.6, "review": "Exceptional privacy measures", "criteria": "1. Data Privacy" },
+                    { "grade": 9.5, "review": "Outstanding access controls", "criteria": "2. Access Control" },
+                    { "grade": 9.5, "review": "Comprehensive anonymization", "criteria": "3. Anonymization" },
+                    { "grade": 9.4, "review": "Excellent compliance awareness", "criteria": "4. Compliance" }
+                  ]
+                },
+                "metadata": {
+                  "quantifier": null,
+                  "model_prompt_id": "claude-opus-prompt",
+                  "response_delay": 1900,
+                  "querier": {
+                    "language": "python",
+                    "model_used": {
+                      "name": "Claude-Opus-4.1",
+                      "features": ["security", "vulnerability-scanning"]
                     }
                   }
                 }
@@ -1210,10 +1786,10 @@
                 "batch_id": "batch-12",
                 "result": {
                   "criteria_evaluations": [
-                    { "grade": 8.8, "review": "Decent privacy protection", "criteria": "1. Data Privacy" },
-                    { "grade": 8.9, "review": "Good access control", "criteria": "2. Access Control" },
-                    { "grade": 8.5, "review": "Adequate anonymization", "criteria": "3. Anonymization" },
-                    { "grade": 9.1, "review": "Strong compliance focus", "criteria": "4. Compliance" }
+                    { "grade": 8.1, "review": "Good privacy protection", "criteria": "1. Data Privacy" },
+                    { "grade": 7.9, "review": "Decent access control", "criteria": "2. Access Control" },
+                    { "grade": 8.0, "review": "Adequate anonymization", "criteria": "3. Anonymization" },
+                    { "grade": 8.0, "review": "Strong compliance focus", "criteria": "4. Compliance" }
                   ]
                 },
                 "metadata": {
@@ -1223,7 +1799,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.0-Flash",
+                      "name": "Gemini-2.5-Pro",
                       "features": ["security"]
                     }
                   }
