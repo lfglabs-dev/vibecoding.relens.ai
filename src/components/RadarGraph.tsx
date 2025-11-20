@@ -12,19 +12,12 @@ const RADAR_METRICS: CriteriaCategoryBase[] = [
   "Security Awareness"
 ];
 
-// Color palette for different projects - bright colors for dark theme
-const PROJECT_COLORS = [
-  '#A855F7', // Purple
-  '#06B6D4', // Cyan  
-  '#10B981', // Emerald
-  '#F59E0B', // Amber
-  '#EF4444', // Red
-  '#3B82F6', // Blue
-  '#EC4899', // Pink
-  '#84CC16', // Lime
-  '#F97316', // Orange
-  '#8B5CF6', // Violet
-];
+// Color palette for AI models - matching the metric cards
+const MODEL_COLORS = {
+  'GPT-4o': '#A855F7', // Purple
+  'Claude-3.5-Sonnet': '#06B6D4', // Cyan
+  'Gemini-2.0-Flash': '#F59E0B', // Amber/Yellow
+};
 
 export const RadarGraph = () => {
   const { transformedProjects: projects, loading, error } = useProjects();
@@ -53,45 +46,43 @@ export const RadarGraph = () => {
     );
   }
 
-  // Filter projects that have radar metric data
-  const filteredProjects = projects.filter(project => 
-    RADAR_METRICS.some(metric => 
-      project.scores.categories[metric] && 
-      project.scores.categories[metric].score > 0
-    )
-  );
+  // Aggregate model scores across all tasks for each criterion
+  const modelScoresByCriterion: Record<string, Record<CriteriaCategoryBase, number[]>> = {};
 
-  // Create series configuration for each project
-  const series = filteredProjects.length > 0 
-    ? filteredProjects.slice(0, 6).map((project, index) => ({
-        label: project.name,
-        data: RADAR_METRICS.map(metric => {
-          const score = project.scores.categories[metric]?.score || 0;
-          // If score is 0, add a random number between 3-8 for visualization
-          const finalScore = score === 0 ? Math.random() * 5 + 3 : score;
-          return Math.round(finalScore * 10) / 10; // Round to 1 decimal
-        }),
-        color: PROJECT_COLORS[index % PROJECT_COLORS.length],
-        hideMark: false,
-      }))
-    : [
-        // Fallback sample data for visualization
-        {
-          label: 'Supabase',
-          data: [8.2, 7.5, 9.1, 8.8],
-          color: PROJECT_COLORS[0],
-          hideMark: false,
-        },
-        {
-          label: 'MongoDB',
-          data: [7.8, 8.9, 7.2, 6.5],
-          color: PROJECT_COLORS[1],
-          hideMark: false,
-        }
-      ];
+  projects.forEach((project) => {
+    RADAR_METRICS.forEach((metric) => {
+      const categoryData = project.scores.categories[metric];
+      if (categoryData && categoryData.modelScores) {
+        categoryData.modelScores.forEach((modelScore) => {
+          if (!modelScoresByCriterion[modelScore.name]) {
+            modelScoresByCriterion[modelScore.name] = {
+              "Code Quality Support": [],
+              "Code Compilation": [],
+              "Problem Solving Helpfulness": [],
+              "Security Awareness": [],
+            };
+          }
+          modelScoresByCriterion[modelScore.name][metric].push(modelScore.score);
+        });
+      }
+    });
+  });
 
-  console.log('Radar series data:', series);
-  console.log('Filtered projects:', filteredProjects);
+  // Calculate average scores for each model across all tasks for each criterion
+  const series = Object.entries(modelScoresByCriterion).map(([modelName, criteriaScores]) => ({
+    label: modelName,
+    data: RADAR_METRICS.map((metric) => {
+      const scores = criteriaScores[metric];
+      if (scores.length === 0) return 0;
+      const average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
+      return Math.round(average * 10) / 10; // Round to 1 decimal
+    }),
+    color: MODEL_COLORS[modelName as keyof typeof MODEL_COLORS] || '#8B5CF6',
+    hideMark: false,
+  }));
+
+  console.log('Radar series data (models):', series);
+  console.log('Model scores by criterion:', modelScoresByCriterion);
 
   // Calculate dynamic scale based on actual data
   const allDataPoints = series.flatMap(s => s.data);
@@ -132,7 +123,7 @@ export const RadarGraph = () => {
           </h3>
           
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Detailed comparison of AI models across key development tasks and criteria.
+            Compare how each AI model performs across the four key evaluation criteria, averaged across all development tasks.
           </p>
         </div>
 
