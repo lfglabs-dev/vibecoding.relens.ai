@@ -110,11 +110,13 @@ export const PerformanceRadar = () => {
     }
   }, [transformedProjects, loading])
 
-  // AI Model logos
+  // AI Model logos - map by actual model names from data
   const modelLogos: Record<string, string> = {
-    "GPT-4o": "/llms/gpt_black.webp",
-    "Claude-3.5-Sonnet": "/llms/claude.webp",
-    "Gemini-2.0-Flash": "/llms/gemini.webp",
+    "GPT-5.1": "/llms/gpt_black.webp",
+    "GPT-4": "/llms/gpt_black.webp",
+    "Claude-4.1-Opus": "/llms/claude.webp",
+    "Claude-Sonnet-2.5": "/llms/claude.webp",
+    "Gemini-2.5-Pro": "/llms/gemini.webp",
   }
 
   // Function to get logo for a model

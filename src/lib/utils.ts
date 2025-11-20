@@ -143,22 +143,20 @@ export const getCategoryScores = (surveys: any[]) => {
   }, {})
 }
 
-// Model family patterns
-const MODEL_PATTERNS = {
-  claude: [{ pattern: /^claude/, name: "Claude Sonnet 4" }],
-  gpt: [{ pattern: /^gpt-4/, name: "GPT 4o" }],
-  gemini: [{ pattern: /^google\/gemini/, name: "Gemini 2.5 pro" }],
-}
+// Model family patterns - order matters, most specific first
+const MODEL_PATTERNS = [
+  { pattern: /^claude-4\.1-opus$/i, name: "Claude 4.1 Opus" },
+  { pattern: /^claude-sonnet-2\.5$/i, name: "Claude Sonnet 2.5" },
+  { pattern: /^gpt-5\.1$/i, name: "GPT-5.1" },
+  { pattern: /^gpt-4$/i, name: "GPT-4" },
+  { pattern: /^gemini-2\.5-pro$/i, name: "Gemini 2.5 Pro" },
+]
 
 export const getReadableModelName = (modelName: string): string => {
-  const name = modelName.toLowerCase()
-
-  // Try matching against patterns
-  for (const [, patterns] of Object.entries(MODEL_PATTERNS)) {
-    for (const { pattern, name: readableName } of patterns) {
-      if (pattern.test(name)) {
-        return readableName
-      }
+  // Try matching against patterns (most specific first)
+  for (const { pattern, name: readableName } of MODEL_PATTERNS) {
+    if (pattern.test(modelName)) {
+      return readableName
     }
   }
 

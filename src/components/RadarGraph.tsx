@@ -13,10 +13,12 @@ const RADAR_METRICS: CriteriaCategoryBase[] = [
 ];
 
 // Color palette for AI models - matching the metric cards
-const MODEL_COLORS = {
-  'GPT-4o': '#A855F7', // Purple
-  'Claude-3.5-Sonnet': '#06B6D4', // Cyan
-  'Gemini-2.0-Flash': '#F59E0B', // Amber/Yellow
+const MODEL_COLORS: Record<string, string> = {
+  'GPT-5.1': '#A855F7', // Purple
+  'GPT-4': '#9333EA', // Darker Purple
+  'Claude-4.1-Opus': '#06B6D4', // Cyan
+  'Claude-Sonnet-2.5': '#0891B2', // Darker Cyan
+  'Gemini-2.5-Pro': '#F59E0B', // Amber/Yellow
 };
 
 export const RadarGraph = () => {
@@ -77,7 +79,7 @@ export const RadarGraph = () => {
       const average = scores.reduce((sum, score) => sum + score, 0) / scores.length;
       return Math.round(average * 10) / 10; // Round to 1 decimal
     }),
-    color: MODEL_COLORS[modelName as keyof typeof MODEL_COLORS] || '#8B5CF6',
+    color: MODEL_COLORS[modelName] || '#8B5CF6',
     hideMark: false,
   }));
 
@@ -160,7 +162,7 @@ export const RadarGraph = () => {
                     '& .MuiRadarGrid-stripe': {
                       fill: 'purple',
                     },
-                    '& .MuiRadarGrid-stripe:nth-child(even)': {
+                    '& .MuiRadarGrid-stripe:nth-of-type(even)': {
                       fill: 'rgba(168, 85, 247, 0.1)', // Purple with low opacity
                     },
                     '& .MuiRadarGrid-radial': {

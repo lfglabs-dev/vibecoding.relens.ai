@@ -241,7 +241,30 @@ export function ProjectModal({
                           index ===
                           self.findIndex((m) => m.name === model.name),
                       )
-                      .sort((a, b) => b.score - a.score)
+                      .map((model) => {
+                        // Calculate average score across all categories for this model
+                        const modelScoresAcrossCategories = Object.values(
+                          transformedProject.scores.categories,
+                        )
+                          .map((category) =>
+                            category.modelScores.find(
+                              (score) => score.name === model.name,
+                            ),
+                          )
+                          .filter((score) => score !== undefined)
+                          .map((score) => score.score)
+
+                        const averageScore =
+                          modelScoresAcrossCategories.length > 0
+                            ? modelScoresAcrossCategories.reduce(
+                                (sum, score) => sum + score,
+                                0,
+                              ) / modelScoresAcrossCategories.length
+                            : 0
+
+                        return { ...model, averageScore }
+                      })
+                      .sort((a, b) => b.averageScore - a.averageScore)
                       .map((model) => (
                         <div
                           key={model.name}
@@ -280,11 +303,7 @@ export function ProjectModal({
                             <div className="flex items-center gap-4">
                               <div className="flex items-baseline">
                                 <span className="font-medium text-purple-300">
-                                  {(
-                                    transformedProject.scores.topModels.find(
-                                      (m) => m.name === model.name,
-                                    )?.score || 0
-                                  ).toFixed(1)}
+                                  {model.averageScore.toFixed(1)}
                                 </span>
                                 <span className="ml-1 text-xs text-purple-400">
                                   /10
