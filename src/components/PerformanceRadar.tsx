@@ -1,10 +1,5 @@
 "use client"
 
-import { useEffect, useState } from "react";
-import Image from "next/image";
-import { useProjects } from "@/contexts/ProjectContext";
-import { RadarGraph } from "./RadarGraph";
-import { Sparkles } from "lucide-react";
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import { useProjects } from "@/contexts/ProjectContext"
@@ -161,8 +156,6 @@ export const PerformanceRadar = () => {
     return {
       icon: getModelLogo(model.modelName),
       title: model.modelName,
-      icon: getModelLogo(model.modelName),
-      title: model.modelName,
       score: score,
       maxScore: maxScore,
       progress: Math.min(progress, 100), // Cap at 100%
@@ -216,10 +209,6 @@ export const PerformanceRadar = () => {
               <br />
               <span className="text-white">Leaderboard</span>
             </h2>
-            
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              We evaluate AI models on different development tasks to help you choose the best model for frontend, backend, data analysis, and more.
-
             <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-400">
               We evaluate AI models on different development tasks to help you
               choose the best model for frontend, backend, data analysis, and
