@@ -146,7 +146,7 @@ export const getCategoryScores = (surveys: any[]) => {
 // Model family patterns - order matters, most specific first
 const MODEL_PATTERNS = [
   { pattern: /^claude-4\.1-opus$/i, name: "Claude 4.1 Opus" },
-  { pattern: /^claude-sonnet-2\.5$/i, name: "Claude Sonnet 2.5" },
+  { pattern: /^claude-sonnet-4\.5$/i, name: "Claude Sonnet 4.5" },
   { pattern: /^gpt-5\.1$/i, name: "GPT-5.1" },
   { pattern: /^gpt-4$/i, name: "GPT-4" },
   { pattern: /^gemini-2\.5-pro$/i, name: "Gemini 2.5 Pro" },

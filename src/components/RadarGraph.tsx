@@ -17,12 +17,93 @@ const MODEL_COLORS: Record<string, string> = {
   "GPT-5.1": "#A855F7", // Purple
   "GPT-4": "#9333EA", // Darker Purple
   "Claude-4.1-Opus": "#06B6D4", // Cyan
-  "Claude-Sonnet-2.5": "#0891B2", // Darker Cyan
+  "Claude-Sonnet-4.5": "#0891B2", // Darker Cyan
   "Gemini-2.5-Pro": "#F59E0B", // Amber/Yellow
 }
 
 export const RadarGraph = () => {
   const { transformedProjects: projects, loading, error } = useProjects()
+  const [highlightedMetricIndex, setHighlightedMetricIndex] = React.useState<
+    number | null
+  >(null)
+
+  // Calculate series data with useMemo to avoid recreating on every render
+  const { seriesWithScores, modelScoresByCriterion } = React.useMemo(() => {
+    // Aggregate model scores across all tasks for each criterion
+    const scores: Record<string, Record<CriteriaCategoryBase, number[]>> = {}
+
+    projects.forEach((project) => {
+      RADAR_METRICS.forEach((metric) => {
+        const categoryData = project.scores.categories[metric]
+        if (categoryData && categoryData.modelScores) {
+          categoryData.modelScores.forEach((modelScore) => {
+            if (!scores[modelScore.name]) {
+              scores[modelScore.name] = {
+                "Code Quality Support": [],
+                "Code Compilation": [],
+                "Problem Solving Helpfulness": [],
+                "Security Awareness": [],
+              }
+            }
+            scores[modelScore.name][metric].push(modelScore.score)
+          })
+        }
+      })
+    })
+
+    // Calculate average scores for each model across all tasks for each criterion
+    const withScores = Object.entries(scores).map(
+      ([modelName, criteriaScores]) => {
+        const data = RADAR_METRICS.map((metric) => {
+          const metricScores = criteriaScores[metric]
+          if (metricScores.length === 0) return 0
+          const average =
+            metricScores.reduce((sum, score) => sum + score, 0) /
+            metricScores.length
+          return Math.round(average * 10) / 10 // Round to 1 decimal
+        })
+
+        // Calculate overall average for sorting
+        const overallAverage =
+          data.reduce((sum, val) => sum + val, 0) / data.length
+
+        return {
+          label: modelName,
+          data,
+          color: MODEL_COLORS[modelName] || "#8B5CF6",
+          hideMark: false,
+          overallAverage,
+        }
+      },
+    )
+
+    return { seriesWithScores: withScores, modelScoresByCriterion: scores }
+  }, [projects])
+
+  // Sort series based on highlighted metric or overall average
+  // When hovering over a specific metric, models are sorted by their score for that metric (highest first)
+  // When not hovering, models are sorted by their overall average score (highest first)
+  const series = React.useMemo(() => {
+    const sorted = [...seriesWithScores].sort((a, b) => {
+      if (
+        highlightedMetricIndex !== null &&
+        highlightedMetricIndex >= 0 &&
+        highlightedMetricIndex < RADAR_METRICS.length
+      ) {
+        // Sort by the specific highlighted metric (highest first)
+        return b.data[highlightedMetricIndex] - a.data[highlightedMetricIndex]
+      }
+      // Sort by overall average score (highest first)
+      return b.overallAverage - a.overallAverage
+    })
+
+    return sorted.map(({ label, data, color, hideMark }) => ({
+      label,
+      data,
+      color,
+      hideMark,
+    }))
+  }, [seriesWithScores, highlightedMetricIndex])
 
   if (loading) {
     return (
@@ -49,47 +130,6 @@ export const RadarGraph = () => {
       </section>
     )
   }
-
-  // Aggregate model scores across all tasks for each criterion
-  const modelScoresByCriterion: Record<
-    string,
-    Record<CriteriaCategoryBase, number[]>
-  > = {}
-
-  projects.forEach((project) => {
-    RADAR_METRICS.forEach((metric) => {
-      const categoryData = project.scores.categories[metric]
-      if (categoryData && categoryData.modelScores) {
-        categoryData.modelScores.forEach((modelScore) => {
-          if (!modelScoresByCriterion[modelScore.name]) {
-            modelScoresByCriterion[modelScore.name] = {
-              "Code Quality Support": [],
-              "Code Compilation": [],
-              "Problem Solving Helpfulness": [],
-              "Security Awareness": [],
-            }
-          }
-          modelScoresByCriterion[modelScore.name][metric].push(modelScore.score)
-        })
-      }
-    })
-  })
-
-  // Calculate average scores for each model across all tasks for each criterion
-  const series = Object.entries(modelScoresByCriterion).map(
-    ([modelName, criteriaScores]) => ({
-      label: modelName,
-      data: RADAR_METRICS.map((metric) => {
-        const scores = criteriaScores[metric]
-        if (scores.length === 0) return 0
-        const average =
-          scores.reduce((sum, score) => sum + score, 0) / scores.length
-        return Math.round(average * 10) / 10 // Round to 1 decimal
-      }),
-      color: MODEL_COLORS[modelName] || "#8B5CF6",
-      hideMark: false,
-    }),
-  )
 
   console.log("Radar series data (models):", series)
   console.log("Model scores by criterion:", modelScoresByCriterion)
@@ -148,6 +188,16 @@ export const RadarGraph = () => {
                 series={series}
                 shape="circular"
                 divisions={10}
+                onHighlightChange={(highlightedItem) => {
+                  if (
+                    highlightedItem &&
+                    highlightedItem.dataIndex !== undefined
+                  ) {
+                    setHighlightedMetricIndex(highlightedItem.dataIndex)
+                  } else {
+                    setHighlightedMetricIndex(null)
+                  }
+                }}
                 sx={{
                   "& .MuiChartsLegend-label": {
                     fill: "#FFFFFF !important",

@@ -82,17 +82,19 @@ export const PerformanceRadar = () => {
 
   useEffect(() => {
     if (!loading && transformedProjects.length > 0) {
-      // Calculate average scores for each AI model across all tasks
+      // Calculate average scores for each AI model across ALL projects and ALL categories
       const modelScores: Record<string, { total: number; count: number }> = {}
 
       transformedProjects.forEach((project) => {
-        // Get all model scores from this project
-        project.scores.topModels.forEach((model) => {
-          if (!modelScores[model.name]) {
-            modelScores[model.name] = { total: 0, count: 0 }
-          }
-          modelScores[model.name].total += model.score
-          modelScores[model.name].count += 1
+        // Get all model scores from ALL categories in this project
+        Object.values(project.scores.categories).forEach((category) => {
+          category.modelScores.forEach((model) => {
+            if (!modelScores[model.name]) {
+              modelScores[model.name] = { total: 0, count: 0 }
+            }
+            modelScores[model.name].total += model.score
+            modelScores[model.name].count += 1
+          })
         })
       })
 
@@ -115,7 +117,7 @@ export const PerformanceRadar = () => {
     "GPT-5.1": "/llms/gpt_black.webp",
     "GPT-4": "/llms/gpt_black.webp",
     "Claude-4.1-Opus": "/llms/claude.webp",
-    "Claude-Sonnet-2.5": "/llms/claude.webp",
+    "Claude-Sonnet-4.5": "/llms/claude.webp",
     "Gemini-2.5-Pro": "/llms/gemini.webp",
   }
 

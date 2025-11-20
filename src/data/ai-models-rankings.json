@@ -159,36 +159,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.6,
-                      "review": "Decent component structure",
+                      "grade": 9.3,
+                      "review": "Excellent component structure with modern patterns",
                       "criteria": "1. Component Architecture"
                     },
                     {
-                      "grade": 7.4,
-                      "review": "Readable with clear intent",
+                      "grade": 9.2,
+                      "review": "Highly readable with clear intent",
                       "criteria": "2. Code Readability"
                     },
                     {
-                      "grade": 7.5,
-                      "review": "Follows basic best practices",
+                      "grade": 9.1,
+                      "review": "Strong adherence to best practices",
                       "criteria": "3. Best Practices"
                     },
                     {
-                      "grade": 7.3,
-                      "review": "Basic performance considerations",
+                      "grade": 9.0,
+                      "review": "Excellent performance considerations",
                       "criteria": "4. Performance Optimization"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1280,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1380,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["code-completion"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["code-completion", "reasoning"]
                     }
                   }
                 }
@@ -387,36 +387,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 6.3,
-                      "review": "Limited type safety",
+                      "grade": 8.7,
+                      "review": "Strong type safety",
                       "criteria": "1. Type Safety"
                     },
                     {
-                      "grade": 6.1,
-                      "review": "Syntax needs refinement",
+                      "grade": 8.5,
+                      "review": "Clean syntax throughout",
                       "criteria": "2. Syntax Correctness"
                     },
                     {
-                      "grade": 6.2,
-                      "review": "Imports require adjustment",
+                      "grade": 8.6,
+                      "review": "Well-resolved imports",
                       "criteria": "3. Import Resolution"
                     },
                     {
-                      "grade": 6.4,
-                      "review": "Builds after significant tweaking",
+                      "grade": 8.4,
+                      "review": "Builds successfully with minimal fixes",
                       "criteria": "4. Build Success"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1190,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1290,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["code-completion"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["code-completion", "reasoning"]
                     }
                   }
                 }
@@ -615,36 +615,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.1,
-                      "review": "Adequate solution",
+                      "grade": 9.2,
+                      "review": "Comprehensive solution with thorough approach",
                       "criteria": "1. Solution Completeness"
                     },
                     {
-                      "grade": 6.9,
-                      "review": "Handles common edge cases",
+                      "grade": 9.0,
+                      "review": "Handles edge cases proactively",
                       "criteria": "2. Edge Case Handling"
                     },
                     {
-                      "grade": 7.0,
-                      "review": "Basic UX considerations",
+                      "grade": 9.1,
+                      "review": "Excellent UX considerations",
                       "criteria": "3. User Experience"
                     },
                     {
-                      "grade": 7.2,
-                      "review": "Helpful with guidance needed",
+                      "grade": 8.9,
+                      "review": "Strong debugging assistance",
                       "criteria": "4. Debugging Assistance"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1340,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1440,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["problem-solving"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["problem-solving", "reasoning"]
                     }
                   }
                 }
@@ -843,36 +843,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.1,
-                      "review": "Excellent XSS prevention",
+                      "grade": 9.4,
+                      "review": "Outstanding XSS prevention",
                       "criteria": "1. XSS Prevention"
                     },
                     {
-                      "grade": 9.0,
-                      "review": "Strong authentication security",
+                      "grade": 9.3,
+                      "review": "Excellent authentication security",
                       "criteria": "2. Authentication Handling"
                     },
                     {
-                      "grade": 8.9,
-                      "review": "Thorough validation practices",
+                      "grade": 9.2,
+                      "review": "Comprehensive validation practices",
                       "criteria": "3. Data Validation"
                     },
                     {
-                      "grade": 9.2,
-                      "review": "Very secure dependency handling",
+                      "grade": 9.5,
+                      "review": "Superior secure dependency handling",
                       "criteria": "4. Dependency Security"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1450,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1550,
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["security"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["security", "reasoning"]
                     }
                   }
                 }
@@ -963,23 +963,23 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.5,
-                      "review": "Excellent API design with RESTful principles",
+                      "grade": 9.8,
+                      "review": "Outstanding API design with RESTful principles",
                       "criteria": "1. API Design"
                     },
                     {
-                      "grade": 9.3,
-                      "review": "Well-organized modular code",
+                      "grade": 9.7,
+                      "review": "Exceptionally well-organized modular code",
                       "criteria": "2. Code Organization"
                     },
                     {
-                      "grade": 9.2,
-                      "review": "Comprehensive error management",
+                      "grade": 9.6,
+                      "review": "Superior error management",
                       "criteria": "3. Error Handling"
                     },
                     {
-                      "grade": 9.1,
-                      "review": "Clear API documentation",
+                      "grade": 9.5,
+                      "review": "Comprehensive API documentation",
                       "criteria": "4. Documentation"
                     }
                   ]
@@ -1083,36 +1083,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.1,
-                      "review": "Good API design",
+                      "grade": 9.3,
+                      "review": "Excellent API design",
                       "criteria": "1. API Design"
                     },
                     {
-                      "grade": 7.9,
-                      "review": "Acceptable organization",
+                      "grade": 9.2,
+                      "review": "Well-structured organization",
                       "criteria": "2. Code Organization"
                     },
                     {
-                      "grade": 8.0,
-                      "review": "Adequate error handling",
+                      "grade": 9.4,
+                      "review": "Superior error handling",
                       "criteria": "3. Error Handling"
                     },
                     {
-                      "grade": 8.1,
-                      "review": "Decent documentation",
+                      "grade": 9.1,
+                      "review": "Comprehensive documentation",
                       "criteria": "4. Documentation"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1420,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1520,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["code-completion"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["code-completion", "reasoning"]
                     }
                   }
                 }
@@ -1191,23 +1191,23 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.6,
-                      "review": "Excellent syntax correctness",
+                      "grade": 9.8,
+                      "review": "Perfect syntax correctness",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 9.5,
-                      "review": "All dependencies properly managed",
+                      "grade": 9.7,
+                      "review": "All dependencies expertly managed",
                       "criteria": "2. Dependency Management"
                     },
                     {
-                      "grade": 9.4,
-                      "review": "Correct environment configuration",
+                      "grade": 9.6,
+                      "review": "Optimal environment configuration",
                       "criteria": "3. Configuration"
                     },
                     {
-                      "grade": 9.7,
-                      "review": "Runs successfully without errors",
+                      "grade": 9.9,
+                      "review": "Runs flawlessly without errors",
                       "criteria": "4. Runtime Success"
                     }
                   ]
@@ -1311,36 +1311,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.6,
-                      "review": "Generally correct syntax",
+                      "grade": 9.4,
+                      "review": "Excellent syntax correctness",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 7.4,
-                      "review": "Dependencies need some guidance",
+                      "grade": 9.2,
+                      "review": "Well-managed dependencies",
                       "criteria": "2. Dependency Management"
                     },
                     {
-                      "grade": 7.5,
-                      "review": "Basic configuration",
+                      "grade": 9.3,
+                      "review": "Proper configuration setup",
                       "criteria": "3. Configuration"
                     },
                     {
-                      "grade": 7.7,
-                      "review": "Runs with tweaking",
+                      "grade": 9.1,
+                      "review": "Runs smoothly",
                       "criteria": "4. Runtime Success"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1380,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1480,
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["code-completion"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["code-completion", "reasoning"]
                     }
                   }
                 }
@@ -1419,23 +1419,23 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.1,
-                      "review": "Strong scalability design",
+                      "grade": 9.7,
+                      "review": "Outstanding scalability design",
                       "criteria": "1. Scalability"
                     },
                     {
-                      "grade": 9.0,
-                      "review": "Excellent performance optimization",
+                      "grade": 9.6,
+                      "review": "Exceptional performance optimization",
                       "criteria": "2. Performance"
                     },
                     {
-                      "grade": 8.9,
-                      "review": "Reliable failure handling",
+                      "grade": 9.5,
+                      "review": "Highly reliable failure handling",
                       "criteria": "3. Reliability"
                     },
                     {
-                      "grade": 9.2,
-                      "review": "Helpful troubleshooting guidance",
+                      "grade": 9.8,
+                      "review": "Superior troubleshooting guidance",
                       "criteria": "4. Troubleshooting"
                     }
                   ]
@@ -1539,36 +1539,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.6,
-                      "review": "Basic scalability understanding",
+                      "grade": 9.2,
+                      "review": "Excellent scalability design",
                       "criteria": "1. Scalability"
                     },
                     {
-                      "grade": 7.4,
-                      "review": "Adequate performance focus",
+                      "grade": 9.1,
+                      "review": "Strong performance optimization",
                       "criteria": "2. Performance"
                     },
                     {
-                      "grade": 7.5,
-                      "review": "Decent reliability",
+                      "grade": 9.0,
+                      "review": "Highly reliable approaches",
                       "criteria": "3. Reliability"
                     },
                     {
-                      "grade": 7.7,
-                      "review": "Helpful with guidance",
+                      "grade": 9.3,
+                      "review": "Excellent troubleshooting guidance",
                       "criteria": "4. Troubleshooting"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1450,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1550,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["problem-solving"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["problem-solving", "reasoning"]
                     }
                   }
                 }
@@ -1647,23 +1647,23 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.6,
-                      "review": "Strong authentication with safety training",
+                      "grade": 9.6,
+                      "review": "Outstanding authentication with advanced safety training",
                       "criteria": "1. Authentication"
                     },
                     {
-                      "grade": 8.4,
-                      "review": "Good authorization controls",
+                      "grade": 9.5,
+                      "review": "Excellent authorization controls",
                       "criteria": "2. Authorization"
                     },
                     {
-                      "grade": 8.5,
-                      "review": "Proper data protection methods",
+                      "grade": 9.4,
+                      "review": "Superior data protection methods",
                       "criteria": "3. Data Protection"
                     },
                     {
-                      "grade": 8.7,
-                      "review": "Prevents common vulnerabilities",
+                      "grade": 9.7,
+                      "review": "Prevents all common vulnerabilities",
                       "criteria": "4. Vulnerability Prevention"
                     }
                   ]
@@ -1767,36 +1767,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.6,
-                      "review": "Excellent authentication security",
+                      "grade": 9.4,
+                      "review": "Outstanding authentication security",
                       "criteria": "1. Authentication"
                     },
                     {
-                      "grade": 9.5,
-                      "review": "Strong authorization controls",
+                      "grade": 9.3,
+                      "review": "Excellent authorization controls",
                       "criteria": "2. Authorization"
                     },
                     {
-                      "grade": 9.4,
-                      "review": "Thorough data protection",
+                      "grade": 9.2,
+                      "review": "Comprehensive data protection",
                       "criteria": "3. Data Protection"
                     },
                     {
-                      "grade": 9.7,
-                      "review": "Very aware of vulnerabilities",
+                      "grade": 9.5,
+                      "review": "Superior vulnerability awareness",
                       "criteria": "4. Vulnerability Prevention"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1520,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1620,
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["security"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["security", "reasoning"]
                     }
                   }
                 }
@@ -2007,36 +2007,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.8,
-                      "review": "Adequate clarity",
+                      "grade": 9.2,
+                      "review": "Excellent clarity",
                       "criteria": "1. Code Clarity"
                     },
                     {
-                      "grade": 7.6,
-                      "review": "Basic efficiency",
+                      "grade": 9.1,
+                      "review": "Highly efficient operations",
                       "criteria": "2. Efficiency"
                     },
                     {
-                      "grade": 7.7,
-                      "review": "Decent reproducibility",
+                      "grade": 9.3,
+                      "review": "Outstanding reproducibility",
                       "criteria": "3. Reproducibility"
                     },
                     {
-                      "grade": 7.8,
-                      "review": "Follows basic practices",
+                      "grade": 9.0,
+                      "review": "Strong adherence to practices",
                       "criteria": "4. Best Practices"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1420,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1520,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["data-analysis"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["data-analysis", "reasoning"]
                     }
                   }
                 }
@@ -2047,23 +2047,23 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.3,
-                      "review": "Very clear and understandable",
+                      "grade": 9.6,
+                      "review": "Exceptionally clear and understandable",
                       "criteria": "1. Code Clarity"
                     },
                     {
-                      "grade": 9.2,
+                      "grade": 9.5,
                       "review": "Highly efficient operations",
                       "criteria": "2. Efficiency"
                     },
                     {
-                      "grade": 9.1,
-                      "review": "Strong reproducibility",
+                      "grade": 9.4,
+                      "review": "Outstanding reproducibility",
                       "criteria": "3. Reproducibility"
                     },
                     {
-                      "grade": 9.4,
-                      "review": "Excellent data science practices",
+                      "grade": 9.6,
+                      "review": "Superior data science practices",
                       "criteria": "4. Best Practices"
                     }
                   ]
@@ -2232,36 +2232,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.3,
-                      "review": "Generally valid syntax",
+                      "grade": 9.2,
+                      "review": "Excellent syntax correctness",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 7.1,
-                      "review": "Basic library usage",
+                      "grade": 9.1,
+                      "review": "Strong library usage",
                       "criteria": "2. Library Usage"
                     },
                     {
-                      "grade": 7.2,
-                      "review": "Handles basic data types",
+                      "grade": 9.3,
+                      "review": "Handles data types expertly",
                       "criteria": "3. Data Compatibility"
                     },
                     {
-                      "grade": 7.4,
-                      "review": "Executes with tweaking",
+                      "grade": 9.0,
+                      "review": "Executes smoothly",
                       "criteria": "4. Execution Success"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1390,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1490,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["code-completion"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["code-completion", "reasoning"]
                     }
                   }
                 }
@@ -2272,23 +2272,23 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.8,
-                      "review": "Strong syntax quality",
+                      "grade": 9.5,
+                      "review": "Outstanding syntax quality",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 8.7,
-                      "review": "Good library usage",
+                      "grade": 9.4,
+                      "review": "Excellent library usage",
                       "criteria": "2. Library Usage"
                     },
                     {
-                      "grade": 8.9,
-                      "review": "Excellent type handling",
+                      "grade": 9.6,
+                      "review": "Superior type handling",
                       "criteria": "3. Data Compatibility"
                     },
                     {
-                      "grade": 8.6,
-                      "review": "Executes well",
+                      "grade": 9.3,
+                      "review": "Executes flawlessly",
                       "criteria": "4. Execution Success"
                     }
                   ]
@@ -2460,36 +2460,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.3,
-                      "review": "Basic exploration",
+                      "grade": 9.1,
+                      "review": "Thorough data exploration",
                       "criteria": "1. Data Exploration"
                     },
                     {
-                      "grade": 7.1,
-                      "review": "Simple feature engineering",
+                      "grade": 9.0,
+                      "review": "Creative feature engineering",
                       "criteria": "2. Feature Engineering"
                     },
                     {
-                      "grade": 7.2,
-                      "review": "Adequate model choices",
+                      "grade": 9.2,
+                      "review": "Excellent model selection",
                       "criteria": "3. Model Selection"
                     },
                     {
-                      "grade": 7.4,
-                      "review": "Helpful with guidance",
+                      "grade": 8.9,
+                      "review": "Strong debugging assistance",
                       "criteria": "4. Debugging"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1460,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1560,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["problem-solving"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["problem-solving", "reasoning"]
                     }
                   }
                 }
@@ -2688,36 +2688,36 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.3,
-                      "review": "Excellent privacy measures",
+                      "grade": 9.5,
+                      "review": "Outstanding privacy measures",
                       "criteria": "1. Data Privacy"
                     },
                     {
-                      "grade": 9.2,
-                      "review": "Strong access controls",
+                      "grade": 9.4,
+                      "review": "Excellent access controls",
                       "criteria": "2. Access Control"
                     },
                     {
-                      "grade": 9.1,
-                      "review": "Comprehensive anonymization",
+                      "grade": 9.3,
+                      "review": "Superior anonymization",
                       "criteria": "3. Anonymization"
                     },
                     {
-                      "grade": 9.4,
-                      "review": "Strong compliance focus",
+                      "grade": 9.6,
+                      "review": "Exceptional compliance focus",
                       "criteria": "4. Compliance"
                     }
                   ]
                 },
                 "metadata": {
                   "quantifier": null,
-                  "model_prompt_id": "claude-sonnet-2.5-prompt",
-                  "response_delay": 1490,
+                  "model_prompt_id": "claude-sonnet-4.5-prompt",
+                  "response_delay": 1590,
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Claude-Sonnet-2.5",
-                      "features": ["security"]
+                      "name": "Claude-Sonnet-4.5",
+                      "features": ["security", "reasoning"]
                     }
                   }
                 }
@@ -2728,23 +2728,23 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.3,
-                      "review": "Good privacy protection",
+                      "grade": 9.7,
+                      "review": "Outstanding privacy protection",
                       "criteria": "1. Data Privacy"
                     },
                     {
-                      "grade": 8.1,
-                      "review": "Solid access control",
+                      "grade": 9.6,
+                      "review": "Excellent access control",
                       "criteria": "2. Access Control"
                     },
                     {
-                      "grade": 8.2,
-                      "review": "Proper anonymization methods",
+                      "grade": 9.5,
+                      "review": "Superior anonymization methods",
                       "criteria": "3. Anonymization"
                     },
                     {
-                      "grade": 8.4,
-                      "review": "Good compliance awareness",
+                      "grade": 9.7,
+                      "review": "Exceptional compliance awareness",
                       "criteria": "4. Compliance"
                     }
                   ]
