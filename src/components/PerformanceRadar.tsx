@@ -5,6 +5,8 @@ import Image from "next/image"
 import { useProjects } from "@/contexts/ProjectContext"
 import { RadarGraph } from "./RadarGraph"
 import { Sparkles } from "lucide-react"
+import { ScrollReveal, StaggerContainer, StaggerItem } from "./ScrollReveal"
+import { motion } from "framer-motion"
 
 interface MetricCardProps {
   icon: React.ReactNode
@@ -33,7 +35,14 @@ const MetricCard = ({
   }
 
   return (
-    <div className="rounded-xl border border-gray-700/50 bg-gray-800/50 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-gray-800/70">
+    <motion.div
+      className="rounded-xl border border-gray-700/50 bg-gray-800/50 p-6 backdrop-blur-sm transition-all duration-300 hover:bg-gray-800/70"
+      whileHover={{
+        scale: 1.03,
+        borderColor: "rgba(168, 85, 247, 0.5)",
+        transition: { duration: 0.2 },
+      }}
+    >
       <div className="mb-4 flex items-center justify-between">
         <div className="flex h-12 w-12 items-center justify-center">{icon}</div>
         <div
@@ -60,12 +69,14 @@ const MetricCard = ({
       </div>
 
       <div className="h-2 w-full rounded-full bg-gray-700/50">
-        <div
+        <motion.div
           className={`h-2 rounded-full ${barColor}`}
-          style={{ width: `${progress}%` }}
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
         />
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -200,7 +211,7 @@ export const PerformanceRadar = () => {
       <section className="relative px-4 py-20">
         <div className="relative mx-auto max-w-7xl">
           {/* Header */}
-          <div className="mb-16 text-center">
+          <ScrollReveal className="mb-16 text-center">
             <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-purple-500/20">
               <Sparkles className="h-8 w-8 text-purple-400" />
             </div>
@@ -218,14 +229,16 @@ export const PerformanceRadar = () => {
               choose the best model for frontend, backend, data analysis, and
               more.
             </p>
-          </div>
+          </ScrollReveal>
 
           {/* Metrics Grid */}
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
             {metrics.map((metric) => (
-              <MetricCard key={metric.title} {...metric} />
+              <StaggerItem key={metric.title}>
+                <MetricCard {...metric} />
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </section>
 

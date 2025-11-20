@@ -4,6 +4,7 @@ import * as React from "react"
 import { RadarChart } from "@mui/x-charts/RadarChart"
 import { CriteriaCategoryBase } from "@/types/llm"
 import { useProjects } from "@/contexts/ProjectContext"
+import { ScrollReveal } from "./ScrollReveal"
 
 const RADAR_METRICS: CriteriaCategoryBase[] = [
   "Code Quality Support",
@@ -164,7 +165,7 @@ export const RadarGraph = () => {
     <section className="relative px-4 py-20">
       <div className="relative mx-auto max-w-7xl">
         {/* Header */}
-        <div className="mb-16 text-center">
+        <ScrollReveal className="mb-16 text-center">
           <h3 className="mb-6 text-4xl font-bold md:text-5xl">
             <span className="bg-gradient-to-r from-blue-400 via-cyan-300 to-teal-400 bg-clip-text text-transparent">
               Performance
@@ -177,67 +178,69 @@ export const RadarGraph = () => {
             Compare how each AI model performs across the four key evaluation
             criteria, averaged across all development tasks.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Radar Chart */}
-        <div className="rounded-2xl border border-gray-700/50 bg-gray-800/30 p-8 backdrop-blur-sm">
-          <div className="flex justify-center">
-            <div className="w-full max-w-2xl">
-              <RadarChart
-                {...commonSettings}
-                series={series}
-                shape="circular"
-                divisions={10}
-                onHighlightChange={(highlightedItem) => {
-                  if (
-                    highlightedItem &&
-                    highlightedItem.dataIndex !== undefined
-                  ) {
-                    setHighlightedMetricIndex(highlightedItem.dataIndex)
-                  } else {
-                    setHighlightedMetricIndex(null)
-                  }
-                }}
-                sx={{
-                  "& .MuiChartsLegend-label": {
-                    fill: "#FFFFFF !important",
-                    fontSize: "14px",
-                    fontWeight: 500,
-                    color: "white",
-                  },
-                  "& .MuiChartsLegend-series": {
-                    "& text": {
+        <ScrollReveal delay={0.2}>
+          <div className="rounded-2xl border border-gray-700/50 bg-gray-800/30 p-8 backdrop-blur-sm">
+            <div className="flex justify-center">
+              <div className="w-full max-w-2xl">
+                <RadarChart
+                  {...commonSettings}
+                  series={series}
+                  shape="circular"
+                  divisions={10}
+                  onHighlightChange={(highlightedItem) => {
+                    if (
+                      highlightedItem &&
+                      highlightedItem.dataIndex !== undefined
+                    ) {
+                      setHighlightedMetricIndex(highlightedItem.dataIndex)
+                    } else {
+                      setHighlightedMetricIndex(null)
+                    }
+                  }}
+                  sx={{
+                    "& .MuiChartsLegend-label": {
                       fill: "#FFFFFF !important",
+                      fontSize: "14px",
                       fontWeight: 500,
+                      color: "white",
                     },
-                  },
-                  "& .MuiChartsLegend-root": {
+                    "& .MuiChartsLegend-series": {
+                      "& text": {
+                        fill: "#FFFFFF !important",
+                        fontWeight: 500,
+                      },
+                    },
+                    "& .MuiChartsLegend-root": {
+                      "& text": {
+                        fill: "#FFFFFF !important",
+                      },
+                    },
                     "& text": {
                       fill: "#FFFFFF !important",
                     },
-                  },
-                  "& text": {
-                    fill: "#FFFFFF !important",
-                  },
-                  "& .MuiRadarGrid-stripe": {
-                    fill: "purple",
-                  },
-                  "& .MuiRadarGrid-stripe:nth-of-type(even)": {
-                    fill: "rgba(168, 85, 247, 0.1)", // Purple with low opacity
-                  },
-                  "& .MuiRadarGrid-radial": {
-                    stroke: "white",
-                  },
-                  "& .MuiRadarGrid-divider": {
-                    stroke: "white",
-                    strokeWidth: 1,
-                  },
-                  backgroundColor: "transparent",
-                }}
-              />
+                    "& .MuiRadarGrid-stripe": {
+                      fill: "purple",
+                    },
+                    "& .MuiRadarGrid-stripe:nth-of-type(even)": {
+                      fill: "rgba(168, 85, 247, 0.1)", // Purple with low opacity
+                    },
+                    "& .MuiRadarGrid-radial": {
+                      stroke: "white",
+                    },
+                    "& .MuiRadarGrid-divider": {
+                      stroke: "white",
+                      strokeWidth: 1,
+                    },
+                    backgroundColor: "transparent",
+                  }}
+                />
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   )
