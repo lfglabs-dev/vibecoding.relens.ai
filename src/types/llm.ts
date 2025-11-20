@@ -63,7 +63,7 @@ export interface ModelInfo {
 }
 
 export interface RunMetadata {
-  quantifier: any
+  quantifier: unknown
   model_prompt_id: string
   response_delay: number
   querier: {

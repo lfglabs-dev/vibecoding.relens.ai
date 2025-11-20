@@ -15,7 +15,7 @@ interface ModelRankingProps {
   category: string
 }
 
-export function ModelRanking({ models, category }: ModelRankingProps) {
+export function ModelRanking({ models }: ModelRankingProps) {
   const [hoveredModel, setHoveredModel] = useState<ModelScore | null>(null)
 
   // Sort all models by score

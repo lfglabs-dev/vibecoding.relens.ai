@@ -105,7 +105,19 @@ export enum MenuType {
   Confirmation = "confirmation",
 }
 
-export const calculateCategoryScore = (runs: any[]) => {
+interface CriteriaEvaluation {
+  grade: number
+  review: string
+  criteria: string
+}
+
+interface SurveyRun {
+  result?: {
+    criteria_evaluations: CriteriaEvaluation[]
+  }
+}
+
+export const calculateCategoryScore = (runs: SurveyRun[]) => {
   if (!runs || runs.length === 0) return 0
 
   let totalGrade = 0
@@ -113,7 +125,7 @@ export const calculateCategoryScore = (runs: any[]) => {
 
   runs.forEach((run) => {
     if (run.result?.criteria_evaluations) {
-      run.result.criteria_evaluations.forEach((evaluation: any) => {
+      run.result.criteria_evaluations.forEach((evaluation) => {
         if (typeof evaluation.grade === "number") {
           totalGrade += evaluation.grade
           totalEvaluations++
@@ -131,16 +143,28 @@ export const calculateOverallScore = (categoryScores: number[]) => {
   return validScores.reduce((a, b) => a + b, 0) / validScores.length
 }
 
-export const getCategoryScores = (surveys: any[]) => {
-  return surveys.reduce((acc, survey) => {
-    const runs = (survey.survey_batches || []).flatMap(
-      (batch: any) => batch.survey_runs || [],
-    )
-    return {
-      ...acc,
-      [survey.name]: calculateCategoryScore(runs),
-    }
-  }, {})
+interface SurveyBatch {
+  survey_runs?: SurveyRun[]
+}
+
+interface Survey {
+  name: string
+  survey_batches?: SurveyBatch[]
+}
+
+export const getCategoryScores = (surveys: Survey[]) => {
+  return surveys.reduce(
+    (acc, survey) => {
+      const runs = (survey.survey_batches || []).flatMap(
+        (batch) => batch.survey_runs || [],
+      )
+      return {
+        ...acc,
+        [survey.name]: calculateCategoryScore(runs),
+      }
+    },
+    {} as Record<string, number>,
+  )
 }
 
 // Model family patterns - order matters, most specific first
