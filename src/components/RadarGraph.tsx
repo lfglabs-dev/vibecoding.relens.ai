@@ -132,7 +132,7 @@ export const RadarGraph = () => {
           </h3>
           
           <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-            Detailed comparison across key development criteria for all evaluated tools.
+            Detailed comparison of AI models across key development tasks and criteria.
           </p>
         </div>
 

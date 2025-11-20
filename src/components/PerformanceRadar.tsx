@@ -2,8 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Project, TransformedProject } from "@/types/llm";
-import { transformProject } from "@/lib/projectTransforms";
+import { useProjects } from "@/contexts/ProjectContext";
 import { RadarGraph } from "./RadarGraph";
 import { Sparkles } from "lucide-react";
 
@@ -28,7 +27,7 @@ const MetricCard = ({ icon, title, score, maxScore, progress, ranking, barColor 
   return (
     <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 rounded-xl p-6 hover:bg-gray-800/70 transition-all duration-300">
       <div className="flex items-center justify-between mb-4">
-        <div className="w-8 h-8 flex items-center justify-center text-gray-300">
+        <div className="w-12 h-12 flex items-center justify-center">
           {icon}
         </div>
         <div className={`px-2 py-1 rounded-full text-xs font-bold ${
@@ -61,75 +60,74 @@ const MetricCard = ({ icon, title, score, maxScore, progress, ranking, barColor 
   );
 };
 
+interface ModelScore {
+  modelName: string;
+  totalScore: number;
+  count: number;
+  averageScore: number;
+}
+
 export const PerformanceRadar = () => {
-  const [projects, setProjects] = useState<TransformedProject[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { transformedProjects, loading } = useProjects();
+  const [modelMetrics, setModelMetrics] = useState<ModelScore[]>([]);
 
   useEffect(() => {
-    const fetchProjects = async () => {
-      try {
-        const response = await fetch('/api/projects');
-        const data = await response.json();
-        
-        // Transform projects and sort by overall score (best first)
-        const transformedProjects = data
-          .map((project: Project) => transformProject(project))
-          .sort((a: TransformedProject, b: TransformedProject) => b.scores.overall - a.scores.overall)
-          .slice(0, 6); // Top 6 projects
-        
-        setProjects(transformedProjects);
-      } catch (error) {
-        console.error('Error fetching projects:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    if (!loading && transformedProjects.length > 0) {
+      // Calculate average scores for each AI model across all tasks
+      const modelScores: Record<string, { total: number; count: number }> = {};
 
-    fetchProjects();
-  }, []);
+      transformedProjects.forEach((project) => {
+        // Get all model scores from this project
+        project.scores.topModels.forEach((model) => {
+          if (!modelScores[model.name]) {
+            modelScores[model.name] = { total: 0, count: 0 };
+          }
+          modelScores[model.name].total += model.score;
+          modelScores[model.name].count += 1;
+        });
+      });
 
-  // Logo mapping based on project names
-  const logoMapping: Record<string, string> = {
-    'PostgreSQL': '/logos/postgresql.png',
-    'Supabase': '/logos/supabase.png',
-    'PlanetScale': '/logos/planetscale.png',
-    'MongoDB': '/logos/mongodb.png',
-    'Neon': '/logos/neon.png',
-    'SQLite': '/logos/sqlite.png',
-    'Firestore': '/logos/firestore.png',
+      // Calculate averages and sort by score
+      const metrics = Object.entries(modelScores)
+        .map(([modelName, { total, count }]) => ({
+          modelName,
+          totalScore: total,
+          count,
+          averageScore: total / count,
+        }))
+        .sort((a, b) => b.averageScore - a.averageScore);
+
+      setModelMetrics(metrics);
+    }
+  }, [transformedProjects, loading]);
+
+  // AI Model logos
+  const modelLogos: Record<string, string> = {
+    'GPT-4o': '/llms/gpt_black.webp',
+    'Claude-3.5-Sonnet': '/llms/claude.webp',
+    'Gemini-2.0-Flash': '/llms/gemini.webp',
   };
 
-  // Fallback icon for projects without logos
-  const fallbackIcon = (
-    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-    </svg>
-  );
-
-  // Function to get logo for a project
-  const getProjectLogo = (projectName: string) => {
-    const logoUrl = logoMapping[projectName];
+  // Function to get logo for a model
+  const getModelLogo = (modelName: string) => {
+    const logoUrl = modelLogos[modelName];
     if (logoUrl) {
       return (
-        <div className="relative w-6 h-6 flex items-center justify-center">
+        <div className="relative w-12 h-12 flex items-center justify-center">
           <Image
             src={logoUrl}
-            alt={`${projectName} logo`}
-            width={24}
-            height={24}
-            className="object-contain"
+            alt={`${modelName} logo`}
+            width={48}
+            height={48}
+            className="object-contain rounded-lg"
             unoptimized
-            onError={() => {
-              // This will be handled by Next.js Image component fallback
-              console.log(`Failed to load logo for ${projectName}`);
-            }}
           />
         </div>
       );
     }
     return (
-      <div className="w-6 h-6 flex items-center justify-center text-gray-300">
-        {fallbackIcon}
+      <div className="w-12 h-12 flex items-center justify-center text-gray-300">
+        <Sparkles className="w-8 h-8" />
       </div>
     );
   };
@@ -139,23 +137,20 @@ export const PerformanceRadar = () => {
     "bg-gradient-to-r from-purple-500 to-purple-600",
     "bg-gradient-to-r from-cyan-400 to-cyan-500", 
     "bg-gradient-to-r from-yellow-400 to-orange-500",
-    "bg-gradient-to-r from-green-400 to-green-500",
-    "bg-gradient-to-r from-blue-400 to-blue-500",
-    "bg-gradient-to-r from-pink-400 to-pink-500"
   ];
 
-    const metrics = projects.map((project, index) => {
-    const score = Math.round(project.scores.overall * 10) / 10; // Round to 1 decimal
+  const metrics = modelMetrics.map((model, index) => {
+    const score = Math.round(model.averageScore * 10) / 10; // Round to 1 decimal
     const maxScore = 10;
     const progress = (score / maxScore) * 100;
     
     return {
-      icon: getProjectLogo(project.name),
-      title: project.name,
+      icon: getModelLogo(model.modelName),
+      title: model.modelName,
       score: score,
       maxScore: maxScore,
       progress: Math.min(progress, 100), // Cap at 100%
-      ranking: index + 1, // Since projects are sorted by score, index + 1 = ranking
+      ranking: index + 1, // Since models are sorted by score, index + 1 = ranking
       barColor: colors[index % colors.length]
     };
   });
@@ -190,14 +185,14 @@ export const PerformanceRadar = () => {
             <h2 className="text-5xl md:text-6xl font-bold mb-6">
               The&nbsp;
               <span className="bg-gradient-to-r from-purple-400 via-purple-300 to-blue-400 bg-clip-text text-transparent">
-              Vibe Coding
+              AI Models
               </span>
               <br />
               <span className="text-white">Leaderboard</span>
             </h2>
             
             <p className="text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed">
-              We evaluate dev-tools based on how easily AI models generate accurate code, docs, and use cases with them so you know what just works (Starting with databases).
+              We evaluate AI models on different development tasks to help you choose the best model for frontend, backend, data analysis, and more.
             </p>
           </div>
 
