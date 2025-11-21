@@ -30,7 +30,7 @@ export const RadarGraph = () => {
   >(null)
 
   // Calculate series data with useMemo to avoid recreating on every render
-  const { seriesWithScores, modelScoresByCriterion } = React.useMemo(() => {
+  const { seriesWithScores } = React.useMemo(() => {
     // Aggregate model scores across all tasks for each criterion
     const scores: Record<string, Record<CriteriaCategoryBase, number[]>> = {}
 
@@ -80,7 +80,7 @@ export const RadarGraph = () => {
       },
     )
 
-    return { seriesWithScores: withScores, modelScoresByCriterion: scores }
+    return { seriesWithScores: withScores }
   }, [projects])
 
   // Sort series based on highlighted metric or overall average
@@ -134,26 +134,28 @@ export const RadarGraph = () => {
     )
   }
 
-  console.log("Radar series data (models):", series)
-  console.log("Model scores by criterion:", modelScoresByCriterion)
-
-  // Calculate dynamic scale based on actual data
+  // Calculate data range and transform to amplify visual differences
   const allDataPoints = series.flatMap((s) => s.data)
   const minValue = Math.min(...allDataPoints)
   const maxValue = Math.max(...allDataPoints)
-  const dataRange = maxValue - minValue
 
-  // Create a very focused scale that maximizes differences
-  // Use minimal padding to zoom in on the data range
-  const scalePadding = dataRange * 0.02 // Only 2% padding for maximum zoom
-  const dynamicMin = Math.max(0, minValue - scalePadding)
-  const dynamicMax = maxValue + scalePadding
+  // STRATEGY: Transform data to amplify visual differences
+  // Map actual range (e.g., 6.5-9.9) to full 0-10 range
+  // This makes small differences appear MUCH larger visually
+  const transformedSeries = series.map((s) => ({
+    ...s,
+    data: s.data.map((value) => {
+      // Normalize to 0-1, then scale to 0-10
+      const normalized = (value - minValue) / (maxValue - minValue)
+      return Math.round(normalized * 10 * 10) / 10
+    }),
+  }))
 
   const commonSettings = {
     height: 500,
     radar: {
-      min: dynamicMin,
-      max: dynamicMax,
+      min: 0,
+      max: 10,
       metrics: RADAR_METRICS.map((metric) =>
         metric
           .replace(" Support", "")
@@ -189,9 +191,9 @@ export const RadarGraph = () => {
               <div className="w-full max-w-2xl">
                 <RadarChart
                   {...commonSettings}
-                  series={series}
+                  series={transformedSeries}
                   shape="circular"
-                  divisions={10}
+                  divisions={8}
                   onHighlightChange={(highlightedItem) => {
                     if (
                       highlightedItem &&
