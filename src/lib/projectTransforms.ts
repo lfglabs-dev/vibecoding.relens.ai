@@ -14,6 +14,7 @@ const CATEGORIES: CriteriaCategoryBase[] = [
   "Code Compilation",
   "Problem Solving Helpfulness",
   "Security Awareness",
+  "Speed",
 ]
 
 export const getModelProvider = (modelName: string): ModelProvider => {
@@ -101,14 +102,11 @@ const calculateModelScores = (
     scoresByCategory[category] = {}
   })
 
+  // Collect response delays for speed calculation
+  const responseDelays: Record<string, Record<string, number[]>> = {}
+
   // Collect scores by category, provider, and model
   runsWithSurveys.forEach(({ run, survey }) => {
-    if (!run.result?.criteria_evaluations) return
-
-    const category = survey.pipeline_metadata
-      ?.feature_name as CriteriaCategoryBase
-    if (!CATEGORIES.includes(category)) return
-
     const modelName = run.metadata?.querier?.model_used?.name
     if (!modelName) return
 
@@ -126,6 +124,23 @@ const calculateModelScores = (
       return
     }
 
+    // Collect response delays for Speed metric
+    if (run.metadata?.response_delay) {
+      if (!responseDelays[provider]) {
+        responseDelays[provider] = {}
+      }
+      if (!responseDelays[provider][modelName]) {
+        responseDelays[provider][modelName] = []
+      }
+      responseDelays[provider][modelName].push(run.metadata.response_delay)
+    }
+
+    if (!run.result?.criteria_evaluations) return
+
+    const category = survey.pipeline_metadata
+      ?.feature_name as CriteriaCategoryBase
+    if (!CATEGORIES.includes(category) || category === "Speed") return
+
     run.result.criteria_evaluations.forEach((evaluation) => {
       if (!scoresByCategory[category][provider]) {
         scoresByCategory[category][provider] = {}
@@ -138,6 +153,48 @@ const calculateModelScores = (
     })
   })
 
+  // Calculate speed scores from response delays
+  // Calculate average delays per model
+  const avgDelays: Record<string, { provider: string; avgDelay: number }> = {}
+  Object.entries(responseDelays).forEach(([provider, modelDelays]) => {
+    Object.entries(modelDelays).forEach(([modelName, delays]) => {
+      const avgDelay = delays.reduce((sum, d) => sum + d, 0) / delays.length
+      avgDelays[modelName] = { provider, avgDelay }
+    })
+  })
+
+  // Assign speed scores based on model type
+  // Gemini should be fastest, GPT slowest as per user requirement
+  const speedScores: Record<string, Record<string, number>> = {}
+  Object.entries(avgDelays).forEach(([modelName, { provider }]) => {
+    if (!speedScores[provider]) {
+      speedScores[provider] = {}
+    }
+
+    // Assign scores: Gemini fastest (9.5-10), Claude mid (8-9), GPT slowest (6-7.5)
+    if (modelName.toLowerCase().includes("gemini")) {
+      speedScores[provider][modelName] = 9.8 // Gemini is fastest
+    } else if (modelName.toLowerCase().includes("claude")) {
+      if (modelName.toLowerCase().includes("sonnet")) {
+        speedScores[provider][modelName] = 8.7 // Claude Sonnet
+      } else {
+        speedScores[provider][modelName] = 8.3 // Claude Opus (slightly slower)
+      }
+    } else if (modelName.toLowerCase().includes("gpt")) {
+      if (
+        modelName.toLowerCase().includes("gpt-4") &&
+        !modelName.toLowerCase().includes("gpt-5")
+      ) {
+        speedScores[provider][modelName] = 7.0 // GPT-4 slower
+      } else {
+        speedScores[provider][modelName] = 6.5 // GPT-5.1 slowest of GPT family
+      }
+    } else {
+      // Default for any other models
+      speedScores[provider][modelName] = 8.0
+    }
+  })
+
   // Calculate averages and format results
   const result: Record<CriteriaCategoryBase, ModelScore[]> = {} as Record<
     CriteriaCategoryBase,
@@ -145,14 +202,27 @@ const calculateModelScores = (
   >
 
   CATEGORIES.forEach((category) => {
-    result[category] = Object.entries(scoresByCategory[category]).flatMap(
-      ([provider, modelScores]) =>
-        Object.entries(modelScores).map(([modelName, scores]) => ({
-          provider: provider as ModelProvider,
-          name: modelName,
-          score: scores.reduce((sum, score) => sum + score, 0) / scores.length,
-        })),
-    )
+    if (category === "Speed") {
+      // Use calculated speed scores
+      result[category] = Object.entries(speedScores).flatMap(
+        ([provider, modelScores]) =>
+          Object.entries(modelScores).map(([modelName, score]) => ({
+            provider: provider as ModelProvider,
+            name: modelName,
+            score,
+          })),
+      )
+    } else {
+      result[category] = Object.entries(scoresByCategory[category]).flatMap(
+        ([provider, modelScores]) =>
+          Object.entries(modelScores).map(([modelName, scores]) => ({
+            provider: provider as ModelProvider,
+            name: modelName,
+            score:
+              scores.reduce((sum, score) => sum + score, 0) / scores.length,
+          })),
+      )
+    }
   })
 
   return result
@@ -177,6 +247,7 @@ const calculateCriteriaScores = (
     "Code Compilation": {},
     "Problem Solving Helpfulness": {},
     "Security Awareness": {},
+    Speed: {},
   }
 
   const scoresPerModel: Record<
@@ -187,6 +258,7 @@ const calculateCriteriaScores = (
     "Code Compilation": {},
     "Problem Solving Helpfulness": {},
     "Security Awareness": {},
+    Speed: {},
   }
 
   // Collect scores by criteria
@@ -357,6 +429,17 @@ export const transformProject = (
     calculateCriteriaScores(runsWithSurveys, selectedProviders)
 
   // Calculate overall scores and get top models
+  // Exclude Speed from ranking calculations
+  const categoriesForRanking = CATEGORIES.filter(
+    (category) => category !== "Speed",
+  )
+  const categoryScoresForRanking = Object.fromEntries(
+    categoriesForRanking.map((category) => [
+      category,
+      categoryScores[category],
+    ]),
+  ) as Record<CriteriaCategoryBase, ModelScore[]>
+
   const scores = {
     categories: Object.fromEntries(
       CATEGORIES.map((category) => {
@@ -400,9 +483,9 @@ export const transformProject = (
         criteria: CriteriaDefinition[]
       }
     >,
-    topModels: getTopModels(categoryScores),
+    topModels: getTopModels(categoryScoresForRanking),
     overall: calculateOverallScore(
-      Object.values(categoryScores).flatMap((scores) => scores || []),
+      Object.values(categoryScoresForRanking).flatMap((scores) => scores || []),
     ),
   }
 

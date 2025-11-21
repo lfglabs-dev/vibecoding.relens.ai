@@ -11,6 +11,7 @@ const RADAR_METRICS: CriteriaCategoryBase[] = [
   "Code Compilation",
   "Problem Solving Helpfulness",
   "Security Awareness",
+  "Speed",
 ]
 
 // Color palette for AI models - matching the metric cards
@@ -19,7 +20,7 @@ const MODEL_COLORS: Record<string, string> = {
   "GPT-4": "#9333EA", // Darker Purple
   "Claude-4.1-Opus": "#06B6D4", // Cyan
   "Claude-Sonnet-4.5": "#0891B2", // Darker Cyan
-  "Gemini-2.5-Pro": "#F59E0B", // Amber/Yellow
+  "Gemini-3-Pro": "#F59E0B", // Amber/Yellow
 }
 
 export const RadarGraph = () => {
@@ -44,6 +45,7 @@ export const RadarGraph = () => {
                 "Code Compilation": [],
                 "Problem Solving Helpfulness": [],
                 "Security Awareness": [],
+                Speed: [],
               }
             }
             scores[modelScore.name][metric].push(modelScore.score)
@@ -175,7 +177,7 @@ export const RadarGraph = () => {
           </h3>
 
           <p className="mx-auto max-w-3xl text-xl leading-relaxed text-gray-400">
-            Compare how each AI model performs across the four key evaluation
+            Compare how each AI model performs across five key evaluation
             criteria, averaged across all development tasks.
           </p>
         </ScrollReveal>

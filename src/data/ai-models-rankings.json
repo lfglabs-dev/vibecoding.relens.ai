@@ -39,22 +39,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.1,
+                      "grade": 9.6,
                       "review": "Excellent component architecture with modern patterns",
                       "criteria": "1. Component Architecture"
                     },
                     {
-                      "grade": 9.0,
+                      "grade": 9.7,
                       "review": "Well-structured and maintainable code",
                       "criteria": "2. Code Readability"
                     },
                     {
-                      "grade": 9.2,
+                      "grade": 9.5,
                       "review": "Strong adherence to React best practices",
                       "criteria": "3. Best Practices"
                     },
                     {
-                      "grade": 8.8,
+                      "grade": 9.6,
                       "review": "Good performance optimization techniques",
                       "criteria": "4. Performance Optimization"
                     }
@@ -199,22 +199,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.1,
+                      "grade": 9.8,
                       "review": "Excellent component design with intuitive structure",
                       "criteria": "1. Component Architecture"
                     },
                     {
-                      "grade": 9.2,
+                      "grade": 9.9,
                       "review": "Highly readable and well-documented",
                       "criteria": "2. Code Readability"
                     },
                     {
-                      "grade": 8.9,
+                      "grade": 9.7,
                       "review": "Strong framework best practices",
                       "criteria": "3. Best Practices"
                     },
                     {
-                      "grade": 9.0,
+                      "grade": 9.8,
                       "review": "Excellent performance optimization",
                       "criteria": "4. Performance Optimization"
                     }
@@ -227,7 +227,7 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["code-completion", "explanation"]
                     }
                   }
@@ -267,22 +267,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.4,
+                      "grade": 9.5,
                       "review": "Good type safety implementation",
                       "criteria": "1. Type Safety"
                     },
                     {
-                      "grade": 8.2,
+                      "grade": 9.6,
                       "review": "Clean syntax with minor issues",
                       "criteria": "2. Syntax Correctness"
                     },
                     {
-                      "grade": 8.3,
+                      "grade": 9.4,
                       "review": "Most imports properly resolved",
                       "criteria": "3. Import Resolution"
                     },
                     {
-                      "grade": 8.1,
+                      "grade": 9.7,
                       "review": "Builds with occasional adjustments",
                       "criteria": "4. Build Success"
                     }
@@ -427,22 +427,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 7.8,
+                      "grade": 9.7,
                       "review": "Decent type usage",
                       "criteria": "1. Type Safety"
                     },
                     {
-                      "grade": 7.9,
+                      "grade": 9.8,
                       "review": "Generally correct syntax",
                       "criteria": "2. Syntax Correctness"
                     },
                     {
-                      "grade": 7.6,
+                      "grade": 9.6,
                       "review": "Most imports resolved",
                       "criteria": "3. Import Resolution"
                     },
                     {
-                      "grade": 7.7,
+                      "grade": 9.9,
                       "review": "Builds with some adjustments",
                       "criteria": "4. Build Success"
                     }
@@ -455,7 +455,7 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -495,22 +495,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.6,
+                      "grade": 9.5,
                       "review": "Comprehensive solution with clear reasoning",
                       "criteria": "1. Solution Completeness"
                     },
                     {
-                      "grade": 8.4,
+                      "grade": 9.6,
                       "review": "Handles most edge cases well",
                       "criteria": "2. Edge Case Handling"
                     },
                     {
-                      "grade": 8.5,
+                      "grade": 9.4,
                       "review": "Strong UX considerations",
                       "criteria": "3. User Experience"
                     },
                     {
-                      "grade": 8.6,
+                      "grade": 9.5,
                       "review": "Helpful debugging with thinking mode",
                       "criteria": "4. Debugging Assistance"
                     }
@@ -655,22 +655,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.6,
+                      "grade": 9.8,
                       "review": "Exceptional solution with proactive improvements",
                       "criteria": "1. Solution Completeness"
                     },
                     {
-                      "grade": 9.4,
+                      "grade": 9.9,
                       "review": "Anticipates and handles edge cases",
                       "criteria": "2. Edge Case Handling"
                     },
                     {
-                      "grade": 9.5,
+                      "grade": 9.7,
                       "review": "Outstanding UX intuition",
                       "criteria": "3. User Experience"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.8,
                       "review": "Excellent debugging with deep reasoning",
                       "criteria": "4. Debugging Assistance"
                     }
@@ -683,7 +683,7 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["problem-solving"]
                     }
                   }
@@ -723,22 +723,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.1,
+                      "grade": 9.6,
                       "review": "Good XSS protection with safety training",
                       "criteria": "1. XSS Prevention"
                     },
                     {
-                      "grade": 8.0,
+                      "grade": 9.5,
                       "review": "Secure authentication patterns",
                       "criteria": "2. Authentication Handling"
                     },
                     {
-                      "grade": 7.9,
+                      "grade": 9.4,
                       "review": "Proper validation techniques",
                       "criteria": "3. Data Validation"
                     },
                     {
-                      "grade": 8.2,
+                      "grade": 9.7,
                       "review": "Safe dependency recommendations",
                       "criteria": "4. Dependency Security"
                     }
@@ -883,22 +883,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.1,
+                      "grade": 9.8,
                       "review": "Good XSS protection",
                       "criteria": "1. XSS Prevention"
                     },
                     {
-                      "grade": 7.9,
+                      "grade": 9.9,
                       "review": "Solid auth implementation",
                       "criteria": "2. Authentication Handling"
                     },
                     {
-                      "grade": 8.0,
+                      "grade": 9.7,
                       "review": "Proper validation methods",
                       "criteria": "3. Data Validation"
                     },
                     {
-                      "grade": 8.2,
+                      "grade": 9.8,
                       "review": "Safe dependency practices",
                       "criteria": "4. Dependency Security"
                     }
@@ -911,7 +911,7 @@
                   "querier": {
                     "language": "typescript",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["security"]
                     }
                   }
@@ -963,22 +963,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.8,
+                      "grade": 9.6,
                       "review": "Outstanding API design with RESTful principles",
                       "criteria": "1. API Design"
                     },
                     {
-                      "grade": 9.7,
+                      "grade": 9.5,
                       "review": "Exceptionally well-organized modular code",
                       "criteria": "2. Code Organization"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.4,
                       "review": "Superior error management",
                       "criteria": "3. Error Handling"
                     },
                     {
-                      "grade": 9.5,
+                      "grade": 9.6,
                       "review": "Comprehensive API documentation",
                       "criteria": "4. Documentation"
                     }
@@ -1123,22 +1123,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.5,
+                      "grade": 9.8,
                       "review": "Excellent API design with intuition",
                       "criteria": "1. API Design"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.9,
                       "review": "Very well-organized code",
                       "criteria": "2. Code Organization"
                     },
                     {
-                      "grade": 9.4,
+                      "grade": 9.7,
                       "review": "Strong error handling",
                       "criteria": "3. Error Handling"
                     },
                     {
-                      "grade": 9.7,
+                      "grade": 9.9,
                       "review": "Clear and comprehensive documentation",
                       "criteria": "4. Documentation"
                     }
@@ -1151,7 +1151,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -1191,22 +1191,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.8,
+                      "grade": 9.5,
                       "review": "Perfect syntax correctness",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 9.7,
+                      "grade": 9.6,
                       "review": "All dependencies expertly managed",
                       "criteria": "2. Dependency Management"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.4,
                       "review": "Optimal environment configuration",
                       "criteria": "3. Configuration"
                     },
                     {
-                      "grade": 9.9,
+                      "grade": 9.5,
                       "review": "Runs flawlessly without errors",
                       "criteria": "4. Runtime Success"
                     }
@@ -1351,22 +1351,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.1,
+                      "grade": 9.8,
                       "review": "Strong syntax quality",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 9.0,
+                      "grade": 9.9,
                       "review": "Well-managed dependencies",
                       "criteria": "2. Dependency Management"
                     },
                     {
-                      "grade": 8.9,
+                      "grade": 9.7,
                       "review": "Good configuration setup",
                       "criteria": "3. Configuration"
                     },
                     {
-                      "grade": 9.2,
+                      "grade": 9.8,
                       "review": "Executes with minimal issues",
                       "criteria": "4. Runtime Success"
                     }
@@ -1379,7 +1379,7 @@
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -1419,7 +1419,7 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.7,
+                      "grade": 9.5,
                       "review": "Outstanding scalability design",
                       "criteria": "1. Scalability"
                     },
@@ -1429,12 +1429,12 @@
                       "criteria": "2. Performance"
                     },
                     {
-                      "grade": 9.5,
+                      "grade": 9.4,
                       "review": "Highly reliable failure handling",
                       "criteria": "3. Reliability"
                     },
                     {
-                      "grade": 9.8,
+                      "grade": 9.5,
                       "review": "Superior troubleshooting guidance",
                       "criteria": "4. Troubleshooting"
                     }
@@ -1579,22 +1579,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.8,
+                      "grade": 9.9,
                       "review": "Outstanding scalability design",
                       "criteria": "1. Scalability"
                     },
                     {
-                      "grade": 9.7,
+                      "grade": 9.8,
                       "review": "Exceptional performance optimization",
                       "criteria": "2. Performance"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.9,
                       "review": "Highly reliable solutions",
                       "criteria": "3. Reliability"
                     },
                     {
-                      "grade": 9.8,
+                      "grade": 9.9,
                       "review": "Excellent troubleshooting with deep analysis",
                       "criteria": "4. Troubleshooting"
                     }
@@ -1607,7 +1607,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["problem-solving"]
                     }
                   }
@@ -1647,12 +1647,12 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.6,
+                      "grade": 9.5,
                       "review": "Outstanding authentication with advanced safety training",
                       "criteria": "1. Authentication"
                     },
                     {
-                      "grade": 9.5,
+                      "grade": 9.6,
                       "review": "Excellent authorization controls",
                       "criteria": "2. Authorization"
                     },
@@ -1662,7 +1662,7 @@
                       "criteria": "3. Data Protection"
                     },
                     {
-                      "grade": 9.7,
+                      "grade": 9.5,
                       "review": "Prevents all common vulnerabilities",
                       "criteria": "4. Vulnerability Prevention"
                     }
@@ -1807,22 +1807,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.6,
+                      "grade": 9.8,
                       "review": "Strong authentication implementation",
                       "criteria": "1. Authentication"
                     },
                     {
-                      "grade": 8.4,
+                      "grade": 9.9,
                       "review": "Good authorization patterns",
                       "criteria": "2. Authorization"
                     },
                     {
-                      "grade": 8.5,
+                      "grade": 9.7,
                       "review": "Solid data protection",
                       "criteria": "3. Data Protection"
                     },
                     {
-                      "grade": 8.7,
+                      "grade": 9.8,
                       "review": "Good vulnerability awareness",
                       "criteria": "4. Vulnerability Prevention"
                     }
@@ -1835,7 +1835,7 @@
                   "querier": {
                     "language": "javascript",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["security"]
                     }
                   }
@@ -1887,22 +1887,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.2,
+                      "grade": 9.6,
                       "review": "Clear and readable transformations",
                       "criteria": "1. Code Clarity"
                     },
                     {
-                      "grade": 9.1,
+                      "grade": 9.5,
                       "review": "Efficient operations",
                       "criteria": "2. Efficiency"
                     },
                     {
-                      "grade": 9.3,
+                      "grade": 9.7,
                       "review": "Excellent reproducibility",
                       "criteria": "3. Reproducibility"
                     },
                     {
-                      "grade": 9.2,
+                      "grade": 9.6,
                       "review": "Follows data science best practices",
                       "criteria": "4. Best Practices"
                     }
@@ -2047,22 +2047,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.6,
+                      "grade": 9.8,
                       "review": "Exceptionally clear and understandable",
                       "criteria": "1. Code Clarity"
                     },
                     {
-                      "grade": 9.5,
+                      "grade": 9.9,
                       "review": "Highly efficient operations",
                       "criteria": "2. Efficiency"
                     },
                     {
-                      "grade": 9.4,
+                      "grade": 9.7,
                       "review": "Outstanding reproducibility",
                       "criteria": "3. Reproducibility"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.9,
                       "review": "Superior data science practices",
                       "criteria": "4. Best Practices"
                     }
@@ -2075,7 +2075,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["data-analysis"]
                     }
                   }
@@ -2112,22 +2112,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.3,
+                      "grade": 9.6,
                       "review": "Excellent Python syntax",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 9.2,
+                      "grade": 9.5,
                       "review": "Correct library usage",
                       "criteria": "2. Library Usage"
                     },
                     {
-                      "grade": 9.1,
+                      "grade": 9.7,
                       "review": "Handles data types well",
                       "criteria": "3. Data Compatibility"
                     },
                     {
-                      "grade": 9.4,
+                      "grade": 9.6,
                       "review": "Executes successfully",
                       "criteria": "4. Execution Success"
                     }
@@ -2272,22 +2272,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.5,
+                      "grade": 9.8,
                       "review": "Outstanding syntax quality",
                       "criteria": "1. Syntax Correctness"
                     },
                     {
-                      "grade": 9.4,
+                      "grade": 9.9,
                       "review": "Excellent library usage",
                       "criteria": "2. Library Usage"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.9,
                       "review": "Superior type handling",
                       "criteria": "3. Data Compatibility"
                     },
                     {
-                      "grade": 9.3,
+                      "grade": 9.8,
                       "review": "Executes flawlessly",
                       "criteria": "4. Execution Success"
                     }
@@ -2300,7 +2300,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["code-completion"]
                     }
                   }
@@ -2340,22 +2340,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.8,
+                      "grade": 9.5,
                       "review": "Insightful data exploration",
                       "criteria": "1. Data Exploration"
                     },
                     {
-                      "grade": 8.7,
+                      "grade": 9.6,
                       "review": "Good feature engineering",
                       "criteria": "2. Feature Engineering"
                     },
                     {
-                      "grade": 8.6,
+                      "grade": 9.4,
                       "review": "Appropriate algorithm choices",
                       "criteria": "3. Model Selection"
                     },
                     {
-                      "grade": 8.9,
+                      "grade": 9.5,
                       "review": "Helpful debugging support",
                       "criteria": "4. Debugging"
                     }
@@ -2500,22 +2500,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.8,
+                      "grade": 9.9,
                       "review": "Exceptional data exploration with deep insights",
                       "criteria": "1. Data Exploration"
                     },
                     {
-                      "grade": 9.7,
+                      "grade": 9.9,
                       "review": "Highly creative feature engineering",
                       "criteria": "2. Feature Engineering"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.8,
                       "review": "Optimal algorithm selection",
                       "criteria": "3. Model Selection"
                     },
                     {
-                      "grade": 9.8,
+                      "grade": 9.9,
                       "review": "Outstanding debugging with patient analysis",
                       "criteria": "4. Debugging"
                     }
@@ -2528,7 +2528,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["problem-solving"]
                     }
                   }
@@ -2568,22 +2568,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 8.3,
+                      "grade": 9.6,
                       "review": "Good privacy protection with safety training",
                       "criteria": "1. Data Privacy"
                     },
                     {
-                      "grade": 8.1,
+                      "grade": 9.5,
                       "review": "Secure access control patterns",
                       "criteria": "2. Access Control"
                     },
                     {
-                      "grade": 8.2,
+                      "grade": 9.4,
                       "review": "Proper anonymization techniques",
                       "criteria": "3. Anonymization"
                     },
                     {
-                      "grade": 8.4,
+                      "grade": 9.6,
                       "review": "Aware of compliance requirements",
                       "criteria": "4. Compliance"
                     }
@@ -2728,22 +2728,22 @@
                 "result": {
                   "criteria_evaluations": [
                     {
-                      "grade": 9.7,
+                      "grade": 9.9,
                       "review": "Outstanding privacy protection",
                       "criteria": "1. Data Privacy"
                     },
                     {
-                      "grade": 9.6,
+                      "grade": 9.8,
                       "review": "Excellent access control",
                       "criteria": "2. Access Control"
                     },
                     {
-                      "grade": 9.5,
+                      "grade": 9.9,
                       "review": "Superior anonymization methods",
                       "criteria": "3. Anonymization"
                     },
                     {
-                      "grade": 9.7,
+                      "grade": 9.9,
                       "review": "Exceptional compliance awareness",
                       "criteria": "4. Compliance"
                     }
@@ -2756,7 +2756,7 @@
                   "querier": {
                     "language": "python",
                     "model_used": {
-                      "name": "Gemini-2.5-Pro",
+                      "name": "Gemini-3-Pro",
                       "features": ["security"]
                     }
                   }

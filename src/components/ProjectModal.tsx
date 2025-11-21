@@ -234,19 +234,21 @@ export function ProjectModal({
                     Detailed Model Performance
                   </h3>
                   <div className="space-y-4">
-                    {Object.values(transformedProject.scores.categories)
-                      .flatMap((category) => category.modelScores)
+                    {Object.entries(transformedProject.scores.categories)
+                      .filter(([categoryName]) => categoryName !== "Speed")
+                      .flatMap(([, category]) => category.modelScores)
                       .filter(
                         (model, index, self) =>
                           index ===
                           self.findIndex((m) => m.name === model.name),
                       )
                       .map((model) => {
-                        // Calculate average score across all categories for this model
-                        const modelScoresAcrossCategories = Object.values(
+                        // Calculate average score across all categories for this model (excluding Speed)
+                        const modelScoresAcrossCategories = Object.entries(
                           transformedProject.scores.categories,
                         )
-                          .map((category) =>
+                          .filter(([categoryName]) => categoryName !== "Speed")
+                          .map(([, category]) =>
                             category.modelScores.find(
                               (score) => score.name === model.name,
                             ),

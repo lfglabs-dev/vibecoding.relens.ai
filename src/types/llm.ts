@@ -3,6 +3,7 @@ export type CriteriaCategoryBase =
   | "Code Compilation"
   | "Problem Solving Helpfulness"
   | "Security Awareness"
+  | "Speed"
 //   | "Tooling & Ecosystem Awareness"
 //   | "Social & Community Signals"
 
