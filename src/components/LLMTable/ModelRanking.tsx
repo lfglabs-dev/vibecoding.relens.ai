@@ -61,10 +61,10 @@ export function ModelRanking({ models }: ModelRankingProps) {
             <div className="absolute -left-2 top-8 z-10 rounded-lg bg-white p-1.5 shadow-lg dark:bg-gray-800">
               <div className="space-y-0.5">
                 <div className="flex items-center justify-between gap-2 text-xs">
-                  <span className="font-medium">
+                  <span className="font-medium text-gray-900 dark:text-white">
                     {getReadableModelName(model.name)}
                   </span>
-                  <span className="ml-1 text-gray-500">
+                  <span className="ml-1 text-gray-600 dark:text-gray-400">
                     {model.score.toFixed(1)}
                   </span>
                 </div>

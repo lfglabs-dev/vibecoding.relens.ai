@@ -199,12 +199,12 @@ export function ProjectModal({
                                       {criteria.description && (
                                         <div className="group relative inline-block">
                                           <button
-                                            className="flex h-4 w-4 items-center justify-center rounded-full bg-[#2d004d] text-xs font-medium text-purple-200 hover:bg-[#1a0033]"
+                                            className="flex h-4 w-4 items-center justify-center rounded-full bg-purple-200 text-xs font-medium text-purple-900 hover:bg-purple-300 dark:bg-[#2d004d] dark:text-purple-200 dark:hover:bg-[#1a0033]"
                                             aria-label="Show description"
                                           >
                                             ?
                                           </button>
-                                          <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg bg-[#12001a] p-4 text-sm text-purple-100 shadow-lg transition-opacity group-hover:visible">
+                                          <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-900 shadow-lg transition-opacity group-hover:visible dark:border-transparent dark:bg-[#12001a] dark:text-purple-100">
                                             {criteria.description}
                                           </div>
                                         </div>
@@ -361,12 +361,12 @@ export function ProjectModal({
                                               {criteria.description && (
                                                 <div className="group relative inline-block">
                                                   <button
-                                                    className="flex h-4 w-4 items-center justify-center rounded-full bg-[#2d004d] text-xs font-medium text-purple-200 hover:bg-[#1a0033]"
+                                                    className="flex h-4 w-4 items-center justify-center rounded-full bg-purple-200 text-xs font-medium text-purple-900 hover:bg-purple-300 dark:bg-[#2d004d] dark:text-purple-200 dark:hover:bg-[#1a0033]"
                                                     aria-label="Show description"
                                                   >
                                                     ?
                                                   </button>
-                                                  <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg bg-[#12001a] p-4 text-sm text-purple-100 shadow-lg transition-opacity group-hover:visible">
+                                                  <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-900 shadow-lg transition-opacity group-hover:visible dark:border-transparent dark:bg-[#12001a] dark:text-purple-100">
                                                     {criteria.description}
                                                   </div>
                                                 </div>
