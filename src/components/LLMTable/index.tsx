@@ -12,6 +12,8 @@ import Image from "next/image"
 import { ProjectModal } from "../ProjectModal"
 import { capitalizeFirstLetter } from "@/lib/utils"
 import { useProjects } from "@/contexts/ProjectContext"
+import { ScrollReveal } from "../ScrollReveal"
+import { motion } from "framer-motion"
 
 
 const CRITERIA_CATEGORIES: CriteriaCategoryBase[] = [
@@ -149,7 +151,7 @@ export function LLMTable() {
   })
 
   return (
-    <div className="space-y-6">
+    <ScrollReveal className="space-y-6">
       <div className="w-full overflow-hidden rounded-2xl border-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black shadow-lg">
         <div className="border-b border-purple-900 px-4 py-4 sm:px-6 bg-transparent">
           <div className="flex flex-col gap-4">
@@ -256,11 +258,18 @@ export function LLMTable() {
               </tr>
             </thead>
             <tbody className="divide-y divide-purple-900/60">
-              {sortedProjects.map((project) => (
-                <tr
+              {sortedProjects.map((project, index) => (
+                <motion.tr
                   key={project.id}
                   onClick={() => setSelectedProjectId(project.id)}
                   className="cursor-pointer hover:bg-purple-900/30 transition-colors"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.3,
+                    delay: index * 0.05,
+                    ease: [0.25, 0.1, 0.25, 1],
+                  }}
                 >
                   <td className="whitespace-nowrap px-4 py-4 text-sm font-medium text-purple-100">
                     {project.name}
@@ -293,7 +302,7 @@ export function LLMTable() {
                       </Badge>
                     </td>
                   ))}
-                </tr>
+                </motion.tr>
               ))}
             </tbody>
           </table>
@@ -304,6 +313,6 @@ export function LLMTable() {
         isOpen={selectedProjectId !== null}
         onClose={() => setSelectedProjectId(null)}
       />
-    </div>
+    </ScrollReveal>
   )
 }

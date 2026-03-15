@@ -3,6 +3,7 @@ export type CriteriaCategoryBase =
   | "Code Compilation"
   | "Problem Solving Helpfulness"
   | "Security Awareness"
+  | "Speed"
 //   | "Tooling & Ecosystem Awareness"
 //   | "Social & Community Signals"
 
@@ -63,7 +64,7 @@ export interface ModelInfo {
 }
 
 export interface RunMetadata {
-  quantifier: any
+  quantifier: unknown
   model_prompt_id: string
   response_delay: number
   querier: {

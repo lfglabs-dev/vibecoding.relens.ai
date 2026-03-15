@@ -199,12 +199,12 @@ export function ProjectModal({
                                       {criteria.description && (
                                         <div className="group relative inline-block">
                                           <button
-                                            className="flex h-4 w-4 items-center justify-center rounded-full bg-[#2d004d] text-xs font-medium text-purple-200 hover:bg-[#1a0033]"
+                                            className="flex h-4 w-4 items-center justify-center rounded-full bg-purple-200 text-xs font-medium text-purple-900 hover:bg-purple-300 dark:bg-[#2d004d] dark:text-purple-200 dark:hover:bg-[#1a0033]"
                                             aria-label="Show description"
                                           >
                                             ?
                                           </button>
-                                          <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg bg-[#12001a] p-4 text-sm text-purple-100 shadow-lg transition-opacity group-hover:visible">
+                                          <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-900 shadow-lg transition-opacity group-hover:visible dark:border-transparent dark:bg-[#12001a] dark:text-purple-100">
                                             {criteria.description}
                                           </div>
                                         </div>
@@ -234,14 +234,39 @@ export function ProjectModal({
                     Detailed Model Performance
                   </h3>
                   <div className="space-y-4">
-                    {Object.values(transformedProject.scores.categories)
-                      .flatMap((category) => category.modelScores)
+                    {Object.entries(transformedProject.scores.categories)
+                      .filter(([categoryName]) => categoryName !== "Speed")
+                      .flatMap(([, category]) => category.modelScores)
                       .filter(
                         (model, index, self) =>
                           index ===
                           self.findIndex((m) => m.name === model.name),
                       )
-                      .sort((a, b) => b.score - a.score)
+                      .map((model) => {
+                        // Calculate average score across all categories for this model (excluding Speed)
+                        const modelScoresAcrossCategories = Object.entries(
+                          transformedProject.scores.categories,
+                        )
+                          .filter(([categoryName]) => categoryName !== "Speed")
+                          .map(([, category]) =>
+                            category.modelScores.find(
+                              (score) => score.name === model.name,
+                            ),
+                          )
+                          .filter((score) => score !== undefined)
+                          .map((score) => score.score)
+
+                        const averageScore =
+                          modelScoresAcrossCategories.length > 0
+                            ? modelScoresAcrossCategories.reduce(
+                                (sum, score) => sum + score,
+                                0,
+                              ) / modelScoresAcrossCategories.length
+                            : 0
+
+                        return { ...model, averageScore }
+                      })
+                      .sort((a, b) => b.averageScore - a.averageScore)
                       .map((model) => (
                         <div
                           key={model.name}
@@ -280,11 +305,7 @@ export function ProjectModal({
                             <div className="flex items-center gap-4">
                               <div className="flex items-baseline">
                                 <span className="font-medium text-purple-300">
-                                  {(
-                                    transformedProject.scores.topModels.find(
-                                      (m) => m.name === model.name,
-                                    )?.score || 0
-                                  ).toFixed(1)}
+                                  {model.averageScore.toFixed(1)}
                                 </span>
                                 <span className="ml-1 text-xs text-purple-400">
                                   /10
@@ -340,12 +361,12 @@ export function ProjectModal({
                                               {criteria.description && (
                                                 <div className="group relative inline-block">
                                                   <button
-                                                    className="flex h-4 w-4 items-center justify-center rounded-full bg-[#2d004d] text-xs font-medium text-purple-200 hover:bg-[#1a0033]"
+                                                    className="flex h-4 w-4 items-center justify-center rounded-full bg-purple-200 text-xs font-medium text-purple-900 hover:bg-purple-300 dark:bg-[#2d004d] dark:text-purple-200 dark:hover:bg-[#1a0033]"
                                                     aria-label="Show description"
                                                   >
                                                     ?
                                                   </button>
-                                                  <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg bg-[#12001a] p-4 text-sm text-purple-100 shadow-lg transition-opacity group-hover:visible">
+                                                  <div className="invisible absolute left-6 top-0 z-10 w-64 rounded-lg border border-gray-200 bg-white p-4 text-sm text-gray-900 shadow-lg transition-opacity group-hover:visible dark:border-transparent dark:bg-[#12001a] dark:text-purple-100">
                                                     {criteria.description}
                                                   </div>
                                                 </div>

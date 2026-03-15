@@ -105,7 +105,19 @@ export enum MenuType {
   Confirmation = "confirmation",
 }
 
-export const calculateCategoryScore = (runs: any[]) => {
+interface CriteriaEvaluation {
+  grade: number
+  review: string
+  criteria: string
+}
+
+interface SurveyRun {
+  result?: {
+    criteria_evaluations: CriteriaEvaluation[]
+  }
+}
+
+export const calculateCategoryScore = (runs: SurveyRun[]) => {
   if (!runs || runs.length === 0) return 0
 
   let totalGrade = 0
@@ -113,7 +125,7 @@ export const calculateCategoryScore = (runs: any[]) => {
 
   runs.forEach((run) => {
     if (run.result?.criteria_evaluations) {
-      run.result.criteria_evaluations.forEach((evaluation: any) => {
+      run.result.criteria_evaluations.forEach((evaluation) => {
         if (typeof evaluation.grade === "number") {
           totalGrade += evaluation.grade
           totalEvaluations++
@@ -131,34 +143,44 @@ export const calculateOverallScore = (categoryScores: number[]) => {
   return validScores.reduce((a, b) => a + b, 0) / validScores.length
 }
 
-export const getCategoryScores = (surveys: any[]) => {
-  return surveys.reduce((acc, survey) => {
-    const runs = (survey.survey_batches || []).flatMap(
-      (batch: any) => batch.survey_runs || [],
-    )
-    return {
-      ...acc,
-      [survey.name]: calculateCategoryScore(runs),
-    }
-  }, {})
+interface SurveyBatch {
+  survey_runs?: SurveyRun[]
 }
 
-// Model family patterns
-const MODEL_PATTERNS = {
-  claude: [{ pattern: /^claude/, name: "Claude Sonnet 4" }],
-  gpt: [{ pattern: /^gpt-4/, name: "GPT 4o" }],
-  gemini: [{ pattern: /^google\/gemini/, name: "Gemini 2.5 pro" }],
+interface Survey {
+  name: string
+  survey_batches?: SurveyBatch[]
 }
+
+export const getCategoryScores = (surveys: Survey[]) => {
+  return surveys.reduce(
+    (acc, survey) => {
+      const runs = (survey.survey_batches || []).flatMap(
+        (batch) => batch.survey_runs || [],
+      )
+      return {
+        ...acc,
+        [survey.name]: calculateCategoryScore(runs),
+      }
+    },
+    {} as Record<string, number>,
+  )
+}
+
+// Model family patterns - order matters, most specific first
+const MODEL_PATTERNS = [
+  { pattern: /^claude-4\.1-opus$/i, name: "Claude 4.1 Opus" },
+  { pattern: /^claude-sonnet-4\.5$/i, name: "Claude Sonnet 4.5" },
+  { pattern: /^gpt-5\.1$/i, name: "GPT-5.1" },
+  { pattern: /^gpt-4$/i, name: "GPT-4" },
+  { pattern: /^gemini-2\.5-pro$/i, name: "Gemini 2.5 Pro" },
+]
 
 export const getReadableModelName = (modelName: string): string => {
-  const name = modelName.toLowerCase()
-
-  // Try matching against patterns
-  for (const [, patterns] of Object.entries(MODEL_PATTERNS)) {
-    for (const { pattern, name: readableName } of patterns) {
-      if (pattern.test(name)) {
-        return readableName
-      }
+  // Try matching against patterns (most specific first)
+  for (const { pattern, name: readableName } of MODEL_PATTERNS) {
+    if (pattern.test(modelName)) {
+      return readableName
     }
   }
 

@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useMemo, useState } from "react"
 import { Project, TransformedProject, ModelProvider } from "@/types/llm"
 import { transformProject } from "@/lib/projectTransforms"
+import projectsData from "@/data/ai-models-rankings.json"
 
 interface ProjectContextType {
   projects: Project[]
@@ -29,14 +30,10 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-    const fetchProjects = async () => {
+    const loadProjects = async () => {
       try {
-        const response = await fetch("/api/projects")
-        if (!response.ok) {
-          throw new Error("Failed to fetch projects")
-        }
-        const data = await response.json()
-        setProjects(data)
+        // Load static data
+        setProjects(projectsData as Project[])
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred")
       } finally {
@@ -44,7 +41,7 @@ export function ProjectProvider({ children }: { children: React.ReactNode }) {
       }
     }
 
-    fetchProjects()
+    loadProjects()
   }, [])
 
   // Transform projects with filters
